@@ -1,0 +1,82 @@
+[
+  {
+    "id": "libraries_planted_10",
+    "grade_level": "High school (Grades 9-12)",
+    "essay_type": "Argumentative",
+    "essay": "Why Public Libraries Still Matter\n\nSome people believe that public libraries is no longer necessary because everything can be found online. This view ignores the many ways that libraries continues to serve communities. Libraries provide free access to information, safe public spaces, and support for people who are left behind by technology.\n\nFirst, libraries give everyone access to knowledge regardless of there income. Not every household can afford internet service or a computer, and many students relies on library computers to finish homework. Without libraries, these students would fall further behind there classmates.\n\nSecond, libraries offer a safe and quiet place to study. For students who live in crowded homes, a library may be the only place where they can concentrate. Librarians also helps visitors find reliable sources, which is a skill that random internet searches cannot teach.\n\nFinally libraries support people who struggle with technology. Older adults often visit the library to learn how to use email or apply for jobs online. This services help them participate in a world that is increasingly digital.\n\nIn conclusion, public libraries are not outdated, they are more important then ever. Communities should continue to fund them so that every person has a fair chance to learn and succeed.",
+    "planted": [
+      {
+        "quote": "public libraries is no longer",
+        "type": "grammar"
+      },
+      {
+        "quote": "libraries continues",
+        "type": "grammar"
+      },
+      {
+        "quote": "regardless of there income",
+        "type": "spelling"
+      },
+      {
+        "quote": "many students relies",
+        "type": "grammar"
+      },
+      {
+        "quote": "behind there classmates",
+        "type": "spelling"
+      },
+      {
+        "quote": "Librarians also helps",
+        "type": "grammar"
+      },
+      {
+        "quote": "Finally libraries",
+        "type": "punctuation"
+      },
+      {
+        "quote": "This services",
+        "type": "grammar"
+      },
+      {
+        "quote": "not outdated, they are",
+        "type": "sentence_structure"
+      },
+      {
+        "quote": "more important then ever",
+        "type": "word_choice"
+      }
+    ],
+    "source": "hand-written",
+    "flaws": []
+  },
+  {
+    "id": "garden_structural_flaws",
+    "source": "hand-written",
+    "grade_level": "High school (Grades 9-12)",
+    "essay_type": "Argumentative",
+    "essay": "School Gardens\n\nIn today's world, healthy eating is more important than ever. Every school should have a garden, because gardens teach students about nature, improve what they eat, and bring the community together.\n\nFirst, gardens is a hands-on science classroom. Students can watch seeds sprout, measure how fast plants grow, and learn why soil and sunlight matter. A biology lesson about photosynthesis means much more when you can see it happening in front of you.\n\nSecond, students who grow vegetables are more likely to eat them. At my cousin's school in Mysore, the class grew tomatoes and spinach, and kids who never touched salad started asking for seconds. When students grow food themselves, they feel proud of it and want to try it.\n\nFinally, a garden bring families and neighbors together. Parents can volunteer on weekends, local farmers can visit to share there knowledge, and the harvest can be shared at a school festival. The garden becomes a place that belong to everyone.",
+    "planted": [
+      {
+        "quote": "gardens is a hands-on",
+        "type": "grammar"
+      },
+      {
+        "quote": "a garden bring",
+        "type": "grammar"
+      },
+      {
+        "quote": "share there knowledge",
+        "type": "spelling"
+      },
+      {
+        "quote": "that belong to everyone",
+        "type": "grammar"
+      }
+    ],
+    "flaws": [
+      "missing_counterargument",
+      "no_conclusion",
+      "cliche"
+    ]
+  }
+]

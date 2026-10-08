@@ -1,0 +1,11 @@
+# Never upload secrets or local-only files to Vercel. API keys go in Vercel's Environment Variables.
+.env
+.venv/
+__pycache__/
+*.pyc
+.vercel/
+
+# Datasets (366 MB) and evaluation outputs are for local runs only.
+data/raw/
+eval/cache/
+eval/results/relevance_sheet.csv

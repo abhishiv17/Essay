@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Essay Feedback Coach</title>
+  <meta name="description" content="Rubric-based, constructive feedback on student essays in seconds.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-500.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-700.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#" aria-label="Essay Feedback Coach home">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </span>
+        <span class="brand-name">Essay Feedback Coach</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#how-it-works" class="nav-link" id="open-how">How it works</a>
+        <a href="#rubric" class="nav-link" id="open-rubric">Rubric</a>
+        <button class="nav-link" id="start-tour" type="button">Take the tour</button>
+      </nav>
+      <span id="mode-badge" class="badge" title="Which AI model is answering">connecting&hellip;</span>
+    </div>
+  </header>
+
+  <!-- Welcome / onboarding hero -->
+  <section class="hero" id="how-it-works" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="eyebrow">For students and teachers</span>
+      <h1 id="hero-title">Essay feedback that teaches,<br class="br-desktop"> not just corrects.</h1>
+      <p class="hero-sub">Paste an essay and get a clear report in under a minute: what's working, what to fix first, and exactly how, with every comment pointing to the student's own words.</p>
+      <div class="hero-cta">
+        <button class="btn btn-dark btn-lg" type="button" id="hero-sample">Try a sample essay</button>
+        <button class="btn btn-ghost btn-lg" type="button" id="hero-paste">Paste your own</button>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">1</span>
+          <h3>Add an essay</h3>
+          <p>Paste text, upload a .txt file, or pick one of our sample essays.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <h3>Set the level</h3>
+          <p>Choose the student's level and essay type so feedback matches their stage.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">3</span>
+          <h3>Get your report</h3>
+          <p>Scores on 4 criteria, highlighted sentences, corrections with the rule explained, and one practice task.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <main class="container workspace" id="workspace">
+    <!-- Input card -->
+    <section class="card input-card" aria-labelledby="input-title">
+      <div class="card-head">
+        <h2 id="input-title">Your essay</h2>
+        <div class="recent" id="recent-wrap" hidden>
+          <label for="recent" class="sr-only">Open a recent report</label>
+          <select id="recent" class="select-sm"><option value="">Recent reports</option></select>
+        </div>
+      </div>
+
+      <div class="samples" id="tour-samples">
+        <span class="label">Start with a sample</span>
+        <div id="sample-list" class="chips"></div>
+      </div>
+
+      <div class="field" id="tour-essay">
+        <label for="essay" class="sr-only">Essay text</label>
+        <textarea id="essay" placeholder="Paste the essay here. At least 50 words." spellcheck="false"></textarea>
+        <div class="meter" aria-hidden="true"><div class="meter-fill" id="meter-fill"></div></div>
+        <div class="row between small">
+          <span id="word-count" class="muted">0 words, 50 needed</span>
+          <span class="row gap-sm">
+            <button type="button" class="link-btn" id="clear-essay" hidden>Clear</button>
+            <label class="link-btn" for="file">Upload .txt</label>
+            <input type="file" id="file" accept=".txt,text/plain" hidden>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid-2" id="tour-options">
+        <label class="field">Student level
+          <select id="grade-level">
+            <option>Middle school (Grades 6-8)</option>
+            <option selected>High school (Grades 9-12)</option>
+            <option>English language learner</option>
+            <option>Undergraduate</option>
+          </select>
+        </label>
+        <label class="field">Essay type
+          <select id="essay-type">
+            <option selected>Argumentative</option>
+            <option>Persuasive</option>
+            <option>Expository</option>
+            <option>Narrative</option>
+            <option>Descriptive</option>
+          </select>
+        </label>
+      </div>
+
+      <details class="more">
+        <summary>Add the assignment question <span class="muted">(optional, improves feedback)</span></summary>
+        <label class="field">
+          <span class="sr-only">Assignment question</span>
+          <input id="assignment" type="text" placeholder="e.g. Should schools ban phones in class?">
+        </label>
+      </details>
+
+      <label class="field" id="access-wrap" hidden>Access code
+        <input id="access-code" type="password" autocomplete="off" placeholder="Ask your team for the code">
+      </label>
+
+      <button id="submit" class="btn btn-dark btn-block btn-lg" type="button" disabled>
+        Get feedback <kbd class="kbd">Ctrl</kbd><kbd class="kbd">Enter</kbd>
+      </button>
+      <div id="error" class="alert" role="alert" hidden></div>
+      <p class="fine-print">Free AI models can take 15-40 seconds. Please don't paste personal information.</p>
+    </section>
+
+    <!-- Results card -->
+    <section class="card results-card" aria-live="polite" id="results-card">
+      <div id="empty" class="empty">
+        <div class="empty-illustration" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+        </div>
+        <h3>Your report will appear here</h3>
+        <p class="muted">Pick a sample on the left to see a full example, or paste an essay and press <b>Get feedback</b>.</p>
+        <ul class="empty-list">
+          <li><span class="dot good"></span>What's working, with quotes</li>
+          <li><span class="dot warn"></span>What to fix first, and how</li>
+          <li><span class="dot bad"></span>Every correction with the rule explained</li>
+        </ul>
+      </div>
+
+      <div id="loading" class="loading" hidden>
+        <h3>Reading the essay&hellip;</h3>
+        <ol class="progress-steps" id="progress-steps"></ol>
+        <p class="muted small">Usually 15-40 seconds on the free AI tier.</p>
+      </div>
+
+      <div id="results" hidden>
+        <div class="results-toolbar">
+          <div class="row gap-sm wrap">
+            <label class="switch" title="Hide corrections and model rewrites so the student tries first">
+              <input type="checkbox" id="student-mode"><span class="switch-track"></span>
+              <span>Try it yourself</span>
+            </label>
+          </div>
+          <div class="row gap-sm wrap">
+            <button class="btn btn-ghost btn-sm" type="button" id="read-aloud" title="Read the summary aloud">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+              <span>Listen</span>
+            </button>
+            <button class="btn btn-ghost btn-sm" type="button" id="copy-report">Copy</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="download">Download</button>
+          </div>
+        </div>
+
+        <div class="overview" id="tour-overview">
+          <div class="score-ring" id="overall-ring" title="Overall score out of 5"><span id="overall-score">-</span><small>overall</small></div>
+          <div class="overview-text">
+            <p id="overall-summary" class="summary"></p>
+            <div id="criteria-bars" class="bars"></div>
+          </div>
+        </div>
+
+        <div class="cards-3">
+          <div class="mini-card good"><h3>What's working</h3><ul id="top-strengths"></ul></div>
+          <div class="mini-card focus"><h3>Fix these first</h3><ol id="top-priorities"></ol></div>
+          <div class="mini-card exercise"><h3>Practice task</h3><p id="exercise"></p></div>
+        </div>
+
+        <nav class="tabs" id="tabs" role="tablist" aria-label="Report sections"></nav>
+        <div id="tab-body" class="tab-body" role="tabpanel"></div>
+
+        <footer class="result-footer">
+          <span id="verification" class="small muted"></span>
+          <button class="link-btn small" type="button" id="new-essay">Start a new essay</button>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rubric dialog -->
+  <dialog id="rubric-dialog" class="dialog" aria-labelledby="rubric-title">
+    <div class="dialog-head">
+      <h2 id="rubric-title">How essays are scored</h2>
+      <button class="icon-btn" type="button" data-close aria-label="Close">&times;</button>
+    </div>
+    <div id="rubric-body" class="dialog-body"></div>
+  </dialog>
+
+  <!-- Guided tour layers -->
+  <div id="tour-spot" class="tour-spot" hidden></div>
+  <div id="tour-card" class="tour-card" role="dialog" aria-live="polite" hidden>
+    <div class="tour-meta"><span id="tour-count"></span><button class="link-btn small" type="button" id="tour-skip">Skip tour</button></div>
+    <h3 id="tour-title"></h3>
+    <p id="tour-text"></p>
+    <div class="tour-actions">
+      <button class="btn btn-ghost btn-sm" type="button" id="tour-back">Back</button>
+      <button class="btn btn-dark btn-sm" type="button" id="tour-next">Next</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <footer class="site-footer container small muted">
+    Built for TCS Technology Day &middot; Feedback is AI-generated guidance; teachers should review before grading.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

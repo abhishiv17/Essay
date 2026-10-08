@@ -1,0 +1,6 @@
+# Runtime dependencies (installed by Vercel). Keep this list minimal.
+fastapi>=0.117.1
+httpx>=0.28.1
+python-dotenv>=1.1.1
+# Only if LLM_PROVIDER=anthropic (paid):
+# anthropic>=1.11.0

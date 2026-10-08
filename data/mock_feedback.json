@@ -1,0 +1,228 @@
+{
+  "overall_score": 3,
+  "overall_summary": "You have a clear opinion and a sensible structure: an introduction, two benefits, a problem paragraph and a conclusion. Your personal examples, especially your friend Ravi, make the essay feel real. The biggest thing holding the essay back is grammar, especially verb forms, so focusing there will make your ideas much easier to read.",
+  "top_strengths": [
+    "A clear five-paragraph structure with signposting words like 'First', 'Second' and 'However'.",
+    "Specific personal examples (the volcano video, your friend Ravi) that support your points.",
+    "You consider both sides and suggest practical solutions in the conclusion."
+  ],
+  "top_priorities": [
+    "Subject-verb agreement: singular subjects need verbs ending in -s (technology helps, it has).",
+    "Comparatives: use 'better', not 'more better'.",
+    "Explain more deeply why each example matters instead of moving quickly to the next point."
+  ],
+  "next_step_exercise": "Underline every verb in your second paragraph. For each one, find its subject and check: if the subject is singular (technology, it, the teacher), does the verb end in -s? Rewrite the paragraph with your corrections.",
+  "criteria": [
+    {
+      "criterion": "grammar",
+      "score": 2,
+      "summary": "Your meaning is almost always clear, but there are frequent, repeated errors with subject-verb agreement, plurals and comparatives. Because the same few patterns repeat, fixing them will improve your writing quickly.",
+      "strengths": [
+        {
+          "quote": "This is not fair for them.",
+          "comment": "Short, correct sentences like this are powerful. They show you control sentence structure when you keep it simple."
+        }
+      ],
+      "improvements": [
+        {
+          "quote": "technology help students to learn more better",
+          "issue": "Two patterns appear here: the verb does not agree with the singular subject, and 'more better' doubles the comparative.",
+          "suggestion": "Add -s to verbs after singular subjects, and use 'better' on its own because it is already a comparative.",
+          "example_rewrite": "technology helps students learn better"
+        },
+        {
+          "quote": "Many school are using computer and tablet in classroom.",
+          "issue": "Nouns that mean 'more than one' need a plural form, and countable singular nouns usually need an article.",
+          "suggestion": "Check each noun: is it one or many? Add -s for plurals and 'the' or 'a' where needed.",
+          "example_rewrite": "Many schools are using computers and tablets in the classroom."
+        }
+      ]
+    },
+    {
+      "criterion": "coherence",
+      "score": 4,
+      "summary": "The essay is well organized. Each paragraph has one job, and transition words guide the reader. Some sentences inside paragraphs are joined with commas where a full stop or a linking word is needed.",
+      "strengths": [
+        {
+          "quote": "However technology have also disadvantage.",
+          "comment": "Starting the paragraph with 'However' clearly signals the turn to the other side of the argument. (Add a comma after 'However'.)"
+        }
+      ],
+      "improvements": [
+        {
+          "quote": "Also students can search informations on internet very fast, they dont need to go to library.",
+          "issue": "Two complete sentences are joined only by a comma (a comma splice), which blurs how the ideas connect.",
+          "suggestion": "Use 'so' to show the cause and effect, or split it into two sentences.",
+          "example_rewrite": "Students can also search for information on the internet very quickly, so they don't need to go to the library."
+        }
+      ]
+    },
+    {
+      "criterion": "argument",
+      "score": 3,
+      "summary": "Your position is clear and balanced, and your examples are relevant. The reasoning stays on the surface: you state benefits and problems but rarely explain why they matter for learning.",
+      "strengths": [
+        {
+          "quote": "My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.",
+          "comment": "A specific, real example is much more convincing than a general claim. This is the strongest evidence in your essay."
+        }
+      ],
+      "improvements": [
+        {
+          "quote": "everybody was very exciting",
+          "issue": "You show that students were excited, but you don't explain how that helped them learn. Excitement alone isn't proof of better learning.",
+          "suggestion": "Add one sentence explaining the result: what did students understand or remember because of the video?",
+          "example_rewrite": "everybody was very excited, and weeks later we could still explain how magma rises to the surface."
+        },
+        {
+          "quote": "",
+          "issue": "The disadvantages paragraph lists problems but the conclusion's solutions ('control how students use it') are vague.",
+          "suggestion": "Name one concrete solution, such as website blockers during class or a laptop lending program, and explain why it would work.",
+          "example_rewrite": ""
+        }
+      ]
+    },
+    {
+      "criterion": "originality",
+      "score": 3,
+      "summary": "Your personal experiences give the essay a genuine voice. The introduction and conclusion, however, rely on general phrases that many essays use.",
+      "strengths": [
+        {
+          "quote": "Sometime I also do this when I am suppose to do homework.",
+          "comment": "Admitting your own habits is honest and makes your argument more believable."
+        }
+      ],
+      "improvements": [
+        {
+          "quote": "In the modern time, technology is very important for the students.",
+          "issue": "This opening is very general and could begin almost any essay about technology.",
+          "suggestion": "Start with a specific moment instead, like the volcano video or Ravi's story, then state your opinion.",
+          "example_rewrite": "My friend Ravi never spoke in class, but online he shared some of the best ideas in our group."
+        }
+      ]
+    }
+  ],
+  "grammar_errors": [
+    {
+      "quote": "Many school",
+      "correction": "Many schools",
+      "error_type": "grammar",
+      "explanation": "After 'many', use the plural form of the noun."
+    },
+    {
+      "quote": "technology help",
+      "correction": "technology helps",
+      "error_type": "grammar",
+      "explanation": "A singular subject (technology) needs a verb ending in -s in the present tense."
+    },
+    {
+      "quote": "more better",
+      "correction": "better",
+      "error_type": "grammar",
+      "explanation": "'Better' is already a comparative; don't add 'more'."
+    },
+    {
+      "quote": "it have",
+      "correction": "it has",
+      "error_type": "grammar",
+      "explanation": "With 'it', use 'has', not 'have'."
+    },
+    {
+      "quote": "the things is working",
+      "correction": "things work",
+      "error_type": "grammar",
+      "explanation": "'Things' is plural, so the verb must be plural ('are' or 'work')."
+    },
+    {
+      "quote": "very exciting",
+      "correction": "very excited",
+      "error_type": "word_choice",
+      "explanation": "Use '-ed' for how people feel (excited) and '-ing' for what causes the feeling (an exciting video)."
+    },
+    {
+      "quote": "informations",
+      "correction": "information",
+      "error_type": "grammar",
+      "explanation": "'Information' is uncountable and has no plural form."
+    },
+    {
+      "quote": "dont",
+      "correction": "don't",
+      "error_type": "punctuation",
+      "explanation": "Contractions need an apostrophe where letters are removed (do not -> don't)."
+    },
+    {
+      "quote": "students who is shy",
+      "correction": "students who are shy",
+      "error_type": "grammar",
+      "explanation": "'Who' refers to 'students' (plural), so use 'are'."
+    },
+    {
+      "quote": "there opinion",
+      "correction": "their opinion",
+      "error_type": "spelling",
+      "explanation": "'Their' shows possession; 'there' refers to a place."
+    },
+    {
+      "quote": "suprised",
+      "correction": "surprised",
+      "error_type": "spelling",
+      "explanation": "Spelling: s-u-r-p-r-i-s-e-d."
+    },
+    {
+      "quote": "suppose to",
+      "correction": "supposed to",
+      "error_type": "grammar",
+      "explanation": "The expression is 'be supposed to', with -ed."
+    },
+    {
+      "quote": "not every families",
+      "correction": "not every family",
+      "error_type": "grammar",
+      "explanation": "'Every' is followed by a singular noun."
+    },
+    {
+      "quote": "must to control",
+      "correction": "must control",
+      "error_type": "grammar",
+      "explanation": "Modal verbs like 'must' are followed by the base verb without 'to'."
+    }
+  ],
+  "argument_structure": [
+    {
+      "element": "lead",
+      "present": false,
+      "quote": ""
+    },
+    {
+      "element": "position",
+      "present": true,
+      "quote": "I think technology help students to learn more better, but also it have some problems."
+    },
+    {
+      "element": "claim",
+      "present": true,
+      "quote": "First, technology make the learning more interesting."
+    },
+    {
+      "element": "counterclaim",
+      "present": true,
+      "quote": "However technology have also disadvantage."
+    },
+    {
+      "element": "rebuttal",
+      "present": false,
+      "quote": ""
+    },
+    {
+      "element": "evidence",
+      "present": true,
+      "quote": "in my school we watched a video of volcano"
+    },
+    {
+      "element": "concluding_statement",
+      "present": true,
+      "quote": "In conclusion, technology is good for education because it make learning interesting and help shy students."
+    }
+  ]
+}
