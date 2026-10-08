@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mascot.css">
 </head>
 <body data-view="landing">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -26,6 +27,7 @@
         <button class="nav-btn" type="button" data-open="eval">Evaluation</button>
         <button class="nav-btn" type="button" data-open="about">How it works</button>
       </nav>
+      <button class="nav-btn guide-btn" type="button" id="guide-btn" title="Ask Nib what to do next"><span class="guide-face" aria-hidden="true"></span>Guide</button>
       <span class="demo-pill" id="demo-pill" hidden title="MOCK_LLM=1: reports use example data, not live AI">Demo data</span>
       <button class="btn btn-quiet btn-sm" type="button" id="new-essay">New essay</button>
     </div>
@@ -36,6 +38,8 @@
     <section class="view view-landing" id="view-landing" aria-labelledby="landing-title">
       <div class="landing-grid">
         <div class="landing-copy">
+          <div class="nib-intro"><span class="nib-mount" id="nib-hero"></span>
+            <p class="nib-hi"><b>Hi, I'm Nib.</b> I'll walk you through it: paste an essay, and I'll turn it into a detailed feedback report.</p></div>
           <p class="kicker">Automated essay feedback</p>
           <h1 id="landing-title" class="display">Detailed feedback on your writing, <span class="soft">without waiting for a manual review.</span></h1>
           <p class="lede">Submit an essay and get a structured report: what works, what to improve, why it matters and what to do next. Every comment is tied to the student's own words.</p>
@@ -65,6 +69,40 @@
           </div>
         </figure>
       </div>
+
+      <section class="home-steps" aria-labelledby="steps-title">
+        <div class="section-head"><h2 id="steps-title" class="display-sm">How to use it, in four steps</h2><p class="meta">About a minute from essay to report. Nib pops up at each step if you get stuck.</p></div>
+        <ol class="steps4">
+          <li><span class="step-n">1</span><b>Add an essay</b><p>Paste text, upload a .txt file, or pick one of the sample essays below. At least 50 words.</p></li>
+          <li><span class="step-n">2</span><b>Add context <i>(optional)</i></b><p>Essay type, academic level and the assignment prompt make the feedback specific to this assignment.</p></li>
+          <li><span class="step-n">3</span><b>Generate feedback</b><p>The essay is analyzed against a written rubric and every quote is checked. Usually 10&ndash;40 seconds.</p></li>
+          <li><span class="step-n">4</span><b>Read and act on the report</b><p>Scores on four criteria, strengths, and prioritized improvements. Click any quoted sentence to see it in the essay.</p></li>
+        </ol>
+      </section>
+
+      <section class="home-samples" aria-labelledby="home-samples-title">
+        <div class="section-head"><h2 id="home-samples-title" class="display-sm">Start with a sample essay</h2><p class="meta">Each one produces a different report. Pick one, then press Generate Feedback.</p></div>
+        <div class="sample-grid" id="home-samples"></div>
+      </section>
+
+      <section class="home-report" aria-labelledby="anatomy-title">
+        <div class="anatomy-copy">
+          <h2 id="anatomy-title" class="display-sm">What's in your feedback report</h2>
+          <ul class="anatomy">
+            <li><b>Overall score and summary</b><span>One honest paragraph on where the essay stands.</span></li>
+            <li><b>Four criteria, scored 1&ndash;5</b><span>Grammar &amp; Mechanics, Coherence &amp; Organization, Argument Strength, Originality &amp; Voice, each with evidence and recommendations.</span></li>
+            <li><b>What you're doing well</b><span>Three strengths, each backed by a sentence from the essay.</span></li>
+            <li><b>Areas for improvement</b><span>Your sentence &rarr; why it matters &rarr; what to do next &rarr; a suggested revision.</span></li>
+            <li><b>Corrections that teach</b><span>Your most common error pattern, each rule explained, and a "try it yourself" mode.</span></li>
+            <li><b>Shareable</b><span>Print, copy or download the report as first-pass feedback.</span></li>
+          </ul>
+        </div>
+        <div class="audience">
+          <div><p class="eyebrow">For students</p><p>Know exactly what to fix first and why, without waiting days for comments.</p></div>
+          <div><p class="eyebrow">For educators</p><p>A structured first-pass report in seconds to review, adjust and share, so time goes to higher-value feedback.</p></div>
+          <div><p class="eyebrow">Grounded and measured</p><p>Every comment quotes the essay and is checked. Accuracy is measured, not claimed (see Evaluation).</p></div>
+        </div>
+      </section>
 
       <section class="pipeline-strip" aria-labelledby="pipeline-title">
         <h2 id="pipeline-title" class="eyebrow">How the feedback is produced</h2>
@@ -139,6 +177,7 @@
     <!-- ================= Analysis ================= -->
     <section class="view view-analysis" id="view-analysis" hidden aria-live="polite" aria-labelledby="an-title">
       <div class="analysis">
+        <span class="nib-mount" id="nib-analysis"></span>
         <p class="eyebrow">Feedback pipeline</p>
         <h2 id="an-title" class="display-sm">Analyzing the essay</h2>
         <ol class="stages" id="stages"></ol>
@@ -149,6 +188,7 @@
     <!-- ================= Error ================= -->
     <section class="view view-error" id="view-error" hidden role="alert">
       <div class="error-panel">
+        <span class="nib-mount" id="nib-error"></span>
         <h2 class="display-sm" id="error-title">The feedback service is temporarily unavailable.</h2>
         <p class="lede-sm" id="error-text"></p>
         <p class="saved-note">&#10003; The essay is still saved in this browser.</p>
@@ -210,6 +250,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+  <script src="mascot.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

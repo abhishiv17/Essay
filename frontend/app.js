@@ -174,6 +174,52 @@ function bestMatch(text, candidates, getText) {
 }
 const scoresOf = (r) => Object.fromEntries([["overall", r.feedback.overall_score], ...r.feedback.criteria.map((c) => [c.criterion, c.score])]);
 
+/* ============================== Nib, the guide ============================== */
+// Nib (frontend/mascot.js) walks first-time users through the steps. Tips appear once per browser;
+// the header "Guide" button replays the tip for the current screen at any time.
+
+const hasNib = () => typeof window.Nib !== "undefined";
+
+function nibTip(step) {
+  const scrollTo = (sel) => $(sel)?.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
+  const tips = {
+    landing: { mood: "hello", text: "Hi, I'm Nib! New here? Start with a sample essay to see a full report in seconds, or paste your own essay.",
+      actions: [{ label: "Show me the samples", onClick: () => scrollTo("#home-samples") }, { label: "Paste my own", onClick: () => openSubmit() }] },
+    "submit-empty": { mood: "point", text: "Step 1: paste the essay into the big box (at least 50 words), or use Upload .txt. Not sure? Use a sample." },
+    "submit-ready": { mood: "point", text: "Step 2 (optional): set the essay type, academic level and assignment prompt below for more specific feedback. Then press Generate Feedback.",
+      actions: [{ label: "Generate Feedback", onClick: () => generate() }] },
+    analysis: { mood: "writing", text: "I'm reading the essay against the rubric and checking every quote. This usually takes 10 to 40 seconds." },
+    report: { mood: "cheer", text: "Step 3: here's the report! Start with the four criteria, then Areas for improvement. Click any underlined sentence to see it in the essay.",
+      actions: [{ label: "Show the four criteria", onClick: () => scrollTo("#crit-title") }, { label: "Got it" }] },
+    error: { mood: "oops", text: "Something went wrong, but the essay is saved. Try again in a moment, or open a sample: those load instantly.",
+      actions: [{ label: "Open samples", onClick: () => $("#dlg-samples").showModal() }] },
+  };
+  return tips[step];
+}
+
+// Show a step's tip the first time only (unless forced by the Guide button).
+function guide(step, { force = false } = {}) {
+  if (!hasNib()) return;
+  const tip = nibTip(step);
+  if (!tip) return;
+  if (force) Nib.mute(false);
+  Nib.say(tip.text, { mood: tip.mood, actions: tip.actions || [], duration: 11000, once: force ? "" : `tip-${step}` });
+}
+
+function currentStep() {
+  if (currentView === "submit") return wordCount() >= MIN_WORDS ? "submit-ready" : "submit-empty";
+  return currentView;
+}
+
+function onViewChange(view) {
+  if (!hasNib()) return;
+  Nib.hide();
+  if (view === "analysis") Nib.mount("#nib-analysis", "writing");
+  if (view === "error") Nib.mount("#nib-error", "oops");
+  const step = view === "submit" ? currentStep() : view;
+  if (view !== "analysis") setTimeout(() => currentView === view && guide(step), view === "report" ? 1600 : 600);
+}
+
 /* ============================== views ============================== */
 
 const state = { rubric: null, samples: [], evaluation: null, result: null, items: [], previous: null, loading: false, health: null };
@@ -187,6 +233,7 @@ function show(view, { flipFrom = null } = {}) {
   currentView = view;
   document.body.dataset.view = view;
   $("#back-chip").hidden = true;
+  onViewChange(view);
   if (!motionOK()) { settleViews(); window.scrollTo(0, 0); return; }
   gsap.killTweensOf(".view");
   gsap.set(".view", { clearProps: "opacity,transform" });
@@ -215,7 +262,9 @@ function show(view, { flipFrom = null } = {}) {
 
 function introLanding() {
   if (!motionOK()) return;
-  gsap.timeline({ defaults: { ease: EASE } })
+  const tl = gsap.timeline({ defaults: { ease: EASE } });
+  setTimeout(() => tl.progress(1), 2500); // safety net: never leave the hero half-faded
+  tl.from(".nib-intro", { opacity: 0, y: 10, duration: 0.4 })
     .from(".kicker, #landing-title", { opacity: 0, y: 14, duration: 0.5, stagger: 0.08 })
     .from(".lede", { opacity: 0, y: 8, duration: 0.35 }, "-=0.3")
     .from(".criteria-strip li", { opacity: 0, y: 8, duration: 0.35, stagger: 0.05 }, "-=0.2")
@@ -232,6 +281,13 @@ function renderSamples() {
     return `<button class="sample-card" type="button" data-sample="${escapeHtml(s.id)}">
       <span class="top"><b>${escapeHtml(m.title)}</b><span class="tags">${escapeHtml(m.tag)}</span></span>
       <span class="desc">${escapeHtml(m.desc)}</span><span class="expect">${escapeHtml(m.expect)}</span></button>`;
+  }).join("");
+  $("#home-samples").innerHTML = state.samples.map((s) => {
+    const m = SAMPLE_META[s.id] || { title: s.title, tag: "", desc: "", expect: "" };
+    return `<button class="sample-card" type="button" data-sample="${escapeHtml(s.id)}">
+      <span class="top"><span class="tags">${escapeHtml(m.tag)}</span><b>${escapeHtml(m.title)}</b></span>
+      <span class="desc">${escapeHtml(m.desc)}</span><span class="expect">${escapeHtml(m.expect)}</span>
+      <span class="go">Use this essay &rarr;</span></button>`;
   }).join("");
   const list = store.get("history", []);
   $("#recent-section").innerHTML = list.length
@@ -263,7 +319,7 @@ document.addEventListener("click", (e) => {
   if (sampleBtn) {
     const s = state.samples.find((x) => x.id === sampleBtn.dataset.sample);
     if (!s) return;
-    $("#dlg-samples").close();
+    if ($("#dlg-samples").open) $("#dlg-samples").close();
     loadSample(s);
     openSubmit();
     toast(`Sample loaded: "${(SAMPLE_META[s.id] || s).title}". Press Generate Feedback.`);
@@ -314,6 +370,7 @@ function updateWordCount(animate = true) {
   else if (n > MAX_WORDS) unlock.textContent = `Over ${MAX_WORDS.toLocaleString()} words. Shorten the essay to continue.`;
   else unlock.textContent = "Ready to analyze.";
   $("#generate").disabled = !valid || state.loading;
+  if (valid && !wasValid && currentView === "submit") guide("submit-ready");
   if (valid && !wasValid && animate && motionOK()) gsap.fromTo("#generate", { scale: 0.96 }, { scale: 1, duration: 0.35, ease: "power2.out", clearProps: "transform" });
   wasValid = valid;
 }
@@ -992,7 +1049,14 @@ async function init() {
     generate();
     return;
   }
+  if (hasNib()) Nib.mount("#nib-hero", "hello");
   introLanding();
+  setTimeout(() => currentView === "landing" && guide("landing"), 1400);
 }
+
+$("#guide-btn").addEventListener("click", () => {
+  if (!hasNib()) return toast("The guide couldn't load.");
+  guide(currentStep(), { force: true });
+});
 
 init();
