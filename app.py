@@ -4,16 +4,20 @@ Routes:
   GET  /api/health    -> status + whether mock mode is on
   GET  /api/rubric    -> feedback criteria (for the UI legend)
   GET  /api/samples   -> demo essays from data/sample_essays
+  GET  /api/evaluation -> measured accuracy metrics (data/evaluation_summary.json), never estimated
   POST /api/feedback  -> generate the feedback report (includes a Markdown export)
+  POST /api/practice  -> check a student's rewrite for the practice task
   /                   -> static UI from frontend/
 """
+import json
+
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from core import config
 from core.llm import LLMError
-from core.pipeline import FeedbackOptions, generate_feedback
+from core.pipeline import FeedbackOptions, check_practice, generate_feedback
 from core.report import to_markdown
 from core.rubric import ARGUMENT_ELEMENTS, CRITERIA, SCORE_MAX, SCORE_MIN
 
@@ -26,6 +30,13 @@ class FeedbackRequest(BaseModel):
     essay_type: str = "Argumentative"
     assignment_prompt: str = Field("", max_length=2000)
     use_cache: bool = True
+
+
+class PracticeRequest(BaseModel):
+    task: str = Field(..., min_length=3, max_length=1500)
+    original: str = Field("", max_length=2000)
+    attempt: str = Field(..., min_length=3, max_length=2000)
+    grade_level: str = "High school (Grades 9-12)"
 
 
 def _check_access(code: str | None) -> None:
@@ -45,6 +56,15 @@ def rubric():
     return {"min": SCORE_MIN, "max": SCORE_MAX, "criteria": CRITERIA,
             "argument_elements": {k: {"label": label, "description": desc}
                                   for k, (label, desc) in ARGUMENT_ELEMENTS.items()}}
+
+
+@app.get("/api/evaluation")
+def evaluation():
+    """Measured evaluation results (written by eval/run_eval.py). Empty list if nothing has been measured."""
+    path = config.DATA_DIR / "evaluation_summary.json"
+    if not path.exists():
+        return {"metrics": [], "generated_at": None}
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 @app.get("/api/samples")
@@ -69,6 +89,16 @@ def feedback(req: FeedbackRequest, x_access_code: str | None = Header(default=No
         raise HTTPException(status_code=502, detail=str(e))
     result["markdown"] = to_markdown(result)
     return result
+
+
+@app.post("/api/practice")
+def practice(req: PracticeRequest, x_access_code: str | None = Header(default=None)):
+    """Check a student's rewrite for the practice task (the "Now let's improve it" step)."""
+    _check_access(x_access_code)
+    try:
+        return check_practice(req.task, req.original, req.attempt, req.grade_level)
+    except LLMError as e:
+        raise HTTPException(status_code=502, detail=str(e))
 
 
 # Declared last so the /api routes above take priority. On Vercel this is promoted to the CDN.

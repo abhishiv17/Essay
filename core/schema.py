@@ -104,3 +104,16 @@ FEEDBACK_SCHEMA = {
     ],
     "additionalProperties": False,
 }
+
+
+# ---------- Practice: check a student's rewrite of one sentence (POST /api/practice) ----------
+PRACTICE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "verdict": {"type": "string", "enum": ["improved", "getting_there", "not_yet"]},
+        "feedback": {"type": "string", "description": "Two or three encouraging, specific sentences about the attempt."},
+        "next_tip": {"type": "string", "description": "One concrete thing to try next."},
+    },
+    "required": ["verdict", "feedback", "next_tip"],
+    "additionalProperties": False,
+}

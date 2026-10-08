@@ -1,0 +1,76 @@
+{
+  "cases": 2,
+  "error_recall": 0.857,
+  "planted": 14,
+  "detected": 12,
+  "extra_flags": 2,
+  "flaw_recall": 0.667,
+  "flaws_total": 3,
+  "flaw_recall_by_type": {
+    "missing_counterargument": 1.0,
+    "no_conclusion": 1.0,
+    "cliche": 0.0
+  },
+  "false_alarm_by_type": {
+    "missing_counterargument": 1.0,
+    "missing_evidence": 0.5,
+    "weak_thesis": 1.0,
+    "no_conclusion": 1.0,
+    "missing_transitions": 1.0,
+    "off_topic_paragraph": 0.0,
+    "cliche": 1.0
+  },
+  "controls": [],
+  "per_case": [
+    {
+      "id": "libraries_planted_10",
+      "source": "hand-written",
+      "planted": 10,
+      "detected": 8,
+      "missed": [
+        "Finally libraries",
+        "not outdated, they are"
+      ],
+      "extra_flags": 0,
+      "flaws": [],
+      "flaws_missed": [],
+      "scores": {
+        "grammar": 2,
+        "coherence": 4,
+        "argument": 3,
+        "originality": 3,
+        "overall": 3
+      }
+    },
+    {
+      "id": "garden_structural_flaws",
+      "source": "hand-written",
+      "planted": 4,
+      "detected": 4,
+      "missed": [],
+      "extra_flags": 2,
+      "flaws": [
+        "missing_counterargument",
+        "no_conclusion",
+        "cliche"
+      ],
+      "flaws_missed": [
+        "cliche"
+      ],
+      "scores": {
+        "grammar": 3,
+        "coherence": 4,
+        "argument": 3,
+        "originality": 3,
+        "overall": 3
+      }
+    }
+  ],
+  "run_at": "2026-10-08T15:18:30",
+  "model": "groq:openai/gpt-oss-120b (fallback gemini:gemini-flash-latest)",
+  "models_used": [
+    "groq:openai/gpt-oss-120b"
+  ],
+  "grounding_rate": 0.881,
+  "grounding_n": 2
+}

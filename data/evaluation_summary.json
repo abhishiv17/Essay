@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-10-08T15:18:30",
+  "metrics": [
+    {
+      "id": "grammar_detection",
+      "label": "Grammar error detection",
+      "value": 0.857,
+      "detail": "12 of 14 planted errors flagged (2 synthetic essays)",
+      "n": 14,
+      "model": "groq:openai/gpt-oss-120b",
+      "run_at": "2026-10-08T15:18:30"
+    },
+    {
+      "id": "structural_feedback",
+      "label": "Structural flaw detection",
+      "value": 0.667,
+      "detail": "3 planted flaws, such as a missing counterargument or conclusion",
+      "n": 3,
+      "model": "groq:openai/gpt-oss-120b",
+      "run_at": "2026-10-08T15:18:30"
+    },
+    {
+      "id": "grounding",
+      "label": "Quote grounding",
+      "value": 0.881,
+      "detail": "quoted comments found verbatim in the essay (2 reports)",
+      "n": 2,
+      "model": "groq:openai/gpt-oss-120b",
+      "run_at": "2026-10-08T15:18:30"
+    }
+  ],
+  "note": "Measured with eval/run_eval.py on small samples; methods in docs/AI_APPROACH.md."
+}

@@ -129,7 +129,7 @@ Public datasets only tell us whether our **scores** match humans. To check that 
 - `eval/synthetic_cases.json`: 2 hand-written essays.
   - `libraries_planted_10`: 10 planted grammar and mechanics errors.
   - `garden_structural_flaws`: 4 planted errors, plus no counterargument, no conclusion and a cliché opening.
-- `eval/generate_synthetic.py`: has the LLM (Gemini, or Groq as backup) write **8 more** essays to a precise spec (topic, student level, number of planted errors, structural flaws). The model returns the exact text of each planted error, and we keep only errors whose quote really appears in the essay. Output goes to `eval/synthetic_generated.json`. **Read the generated essays once by eye** before trusting the numbers.
+- `eval/generate_synthetic.py`: has the LLM (Groq, or Gemini as backup) write **8 more** essays to a precise spec (topic, student level, number of planted errors, structural flaws). The model returns the exact text of each planted error, and we keep only errors whose quote really appears in the essay. Output goes to `eval/synthetic_generated.json`. **Read the generated essays once by eye** before trusting the numbers.
   ```bash
   python -m eval.generate_synthetic      # needs the real API; one call per essay
   ```
@@ -166,4 +166,4 @@ Public datasets only tell us whether our **scores** match humans. To check that 
 - **Non-commercial.** ELLIPSE and PERSUADE are licensed CC BY-NC-SA, which is fine for a hackathon prototype and research evaluation. Any commercial version would need to drop them or get permission.
 - **Attribution.** The citations above should appear in our docs (`docs/AI_APPROACH.md`) and be mentioned in the demo whenever we show eval results.
 - **No redistribution.** Raw files stay in `data/raw/` (git-ignored). Model outputs for dataset essays are cached in `eval/cache/` (git-ignored), never in the committed `data/cache/`.
-- **Sending essays to the model API.** During evaluation, essays from these corpora are sent to the free Gemini or Groq API to be scored. Only the essay text and assignment prompt are sent, never any metadata. The free Gemini tier may use inputs to improve Google's products. The corpora are already public and anonymized, so this is acceptable, but don't send real students' essays to a free tier.
+- **Sending essays to the model API.** During evaluation, essays from these corpora are sent to the free Groq or Gemini API to be scored. Only the essay text and assignment prompt are sent, never any metadata. The free Gemini tier may use inputs to improve Google's products. The corpora are already public and anonymized, so this is acceptable, but don't send real students' essays to a free tier.

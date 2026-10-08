@@ -10,7 +10,7 @@ Built for TCS Technology Day, problem statement "Education: Automated Essay Feed
 
 ## Stack
 
-**FastAPI** (Python) backend, a plain **HTML/CSS/JS** frontend, and free AI models (Google Gemini, with Groq as backup). It deploys to **Vercel** as one project.
+**FastAPI** (Python) backend, a plain **HTML/CSS/JS** frontend, and free AI models (Groq, with Google Gemini as backup). It deploys to **Vercel** as one project.
 
 ## API keys (free)
 
@@ -18,8 +18,8 @@ You need two free keys. Paste them into `.env`:
 
 | Key | Get it here |
 |---|---|
-| `GEMINI_API_KEY` (main model) | https://aistudio.google.com/apikey |
-| `GROQ_API_KEY` (backup, used automatically if Gemini is busy) | https://console.groq.com/keys |
+| `GROQ_API_KEY` (main model: fast, about 1,000 free reviews a day) | https://console.groq.com/keys |
+| `GEMINI_API_KEY` (backup, used automatically if Groq is busy) | https://aistudio.google.com/apikey |
 
 Check they work with `python -m core.llm test`.
 
@@ -115,10 +115,9 @@ python -m eval.run_eval relevance-score
 
 ## Demo tips
 
-- `http://localhost:8000/?notour` skips the onboarding tour.
-- `http://localhost:8000/?sample=2_esl_grammar_errors` loads a sample and generates its report straight away.
-- "Take the tour" in the top bar replays the onboarding.
-- Full list of UI features: [docs/features.md](docs/features.md) §7.
+- **3-minute demo script:** [docs/DEMO.md](docs/DEMO.md).
+- `http://localhost:8000/?sample=2_esl_grammar_errors` opens a sample's report straight away. The 4 samples have saved real reports, so they load instantly.
+- How each TCS requirement maps to the product: [docs/features.md](docs/features.md) §7.
 
 ## Demo checklist
 

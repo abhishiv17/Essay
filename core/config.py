@@ -8,15 +8,16 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 # ---------- LLM provider ----------
-# Recommended free setup: LLM_PROVIDER=gemini (best free quality) + LLM_FALLBACK_PROVIDER=groq
-# (separate free quota; used automatically when Gemini is rate-limited or unavailable).
-# ollama (local, no key) and anthropic (paid) are also supported.
+# Default free setup: Groq first (about 1,000 free requests/day, fast), Gemini as automatic backup.
+# Gemini's free tier is per model (some allow only 20 requests/day), so Gemini rotates through a list
+# of models. ollama (local, no key) and anthropic (paid) are also supported.
 PROVIDERS = {
     "gemini": {
         "transport": "openai",
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
         "key_env": "GEMINI_API_KEY",
-        "model": "gemini-flash-latest",  # alias that tracks Google's current Flash model
+        # Tried in order; each model has its own free daily quota. GEMINI_MODEL may be a comma-separated list.
+        "model": "gemini-flash-latest,gemini-3.5-flash,gemini-3-flash-preview,gemini-flash-lite-latest,gemini-3.5-flash-lite",
         "max_tokens": 16000,
     },
     "groq": {
@@ -24,8 +25,9 @@ PROVIDERS = {
         "base_url": "https://api.groq.com/openai/v1",
         "key_env": "GROQ_API_KEY",
         "model": "openai/gpt-oss-120b",
-        # Free tier allows ~8k tokens/minute (prompt + max output), so keep output modest.
-        "max_tokens": 4500,
+        # Free tier allows ~8k tokens/minute counting prompt + max output, so output room is sized per request
+        # (see GROQ_TPM in core/llm.py). This is the upper bound.
+        "max_tokens": 6000,
     },
     "ollama": {
         "transport": "ollama",
@@ -53,8 +55,8 @@ def _provider_name(var: str, default: str) -> str:
     return name
 
 
-PROVIDER = _provider_name("LLM_PROVIDER", "gemini")
-FALLBACK_PROVIDER = _provider_name("LLM_FALLBACK_PROVIDER", "groq")
+PROVIDER = _provider_name("LLM_PROVIDER", "groq")
+FALLBACK_PROVIDER = _provider_name("LLM_FALLBACK_PROVIDER", "gemini")
 if FALLBACK_PROVIDER == PROVIDER:
     FALLBACK_PROVIDER = ""
 
@@ -64,10 +66,13 @@ def provider_settings(name: str) -> dict:
     primary provider; <NAME>_MODEL (e.g. GROQ_MODEL) overrides the model for any provider."""
     preset = PROVIDERS[name]
     primary = name == PROVIDER
+    models = os.getenv(f"{name.upper()}_MODEL") or (os.getenv("LLM_MODEL") if primary else "") or preset["model"]
+    models = [m.strip() for m in models.split(",") if m.strip()]
     return {
         "name": name,
         "transport": preset["transport"],
-        "model": os.getenv(f"{name.upper()}_MODEL") or (os.getenv("LLM_MODEL") if primary else "") or preset["model"],
+        "model": models[0],
+        "models": models,
         "base_url": ((os.getenv("LLM_BASE_URL") if primary else "") or preset.get("base_url", "")).rstrip("/"),
         "key_env": preset["key_env"],
         "api_key": os.getenv(preset["key_env"], "") if preset["key_env"] else "",

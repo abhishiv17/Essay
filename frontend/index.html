@@ -3,224 +3,213 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Essay Feedback Coach</title>
-  <meta name="description" content="Rubric-based, constructive feedback on student essays in seconds.">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-400.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-500.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-600.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/uncut-sans@5.3.0/latin-700.css">
+  <title>Essay Feedback Generator</title>
+  <meta name="description" content="Automated, evidence-grounded essay feedback on grammar, coherence, argument strength and originality.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231c1a17'/%3E%3Cpath d='M7 7h10M7 11h10M7 15h6' stroke='%23f6f3ec' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <!-- Top navigation -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#" aria-label="Essay Feedback Coach home">
-        <span class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-        </span>
-        <span class="brand-name">Essay Feedback Coach</span>
-      </a>
-      <nav class="nav-links" aria-label="Main">
-        <a href="#how-it-works" class="nav-link" id="open-how">How it works</a>
-        <a href="#rubric" class="nav-link" id="open-rubric">Rubric</a>
-        <button class="nav-link" id="start-tour" type="button">Take the tour</button>
+<body data-view="landing">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="brand" type="button" id="brand" aria-label="Essay Feedback Generator home">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10l4 4v12H5z"/><path d="M8 11h8M8 14h8M8 17h5"/></svg>
+        <span class="brand-name">Essay Feedback</span>
+      </button>
+      <nav class="main-nav" aria-label="Main">
+        <button class="nav-btn" type="button" data-open="samples">Samples</button>
+        <button class="nav-btn" type="button" data-open="rubric">Criteria</button>
+        <button class="nav-btn" type="button" data-open="eval">Evaluation</button>
+        <button class="nav-btn" type="button" data-open="about">How it works</button>
       </nav>
-      <span id="mode-badge" class="badge" title="Which AI model is answering">connecting&hellip;</span>
+      <span class="demo-pill" id="demo-pill" hidden title="MOCK_LLM=1: reports use example data, not live AI">Demo data</span>
+      <button class="btn btn-quiet btn-sm" type="button" id="new-essay">New essay</button>
     </div>
   </header>
 
-  <!-- Welcome / onboarding hero -->
-  <section class="hero" id="how-it-works" aria-labelledby="hero-title">
-    <div class="container">
-      <span class="eyebrow">For students and teachers</span>
-      <h1 id="hero-title">Essay feedback that teaches,<br class="br-desktop"> not just corrects.</h1>
-      <p class="hero-sub">Paste an essay and get a clear report in under a minute: what's working, what to fix first, and exactly how, with every comment pointing to the student's own words.</p>
-      <div class="hero-cta">
-        <button class="btn btn-dark btn-lg" type="button" id="hero-sample">Try a sample essay</button>
-        <button class="btn btn-ghost btn-lg" type="button" id="hero-paste">Paste your own</button>
-      </div>
-
-      <ol class="steps">
-        <li class="step">
-          <span class="step-num">1</span>
-          <h3>Add an essay</h3>
-          <p>Paste text, upload a .txt file, or pick one of our sample essays.</p>
-        </li>
-        <li class="step">
-          <span class="step-num">2</span>
-          <h3>Set the level</h3>
-          <p>Choose the student's level and essay type so feedback matches their stage.</p>
-        </li>
-        <li class="step">
-          <span class="step-num">3</span>
-          <h3>Get your report</h3>
-          <p>Scores on 4 criteria, highlighted sentences, corrections with the rule explained, and one practice task.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <main class="container workspace" id="workspace">
-    <!-- Input card -->
-    <section class="card input-card" aria-labelledby="input-title">
-      <div class="card-head">
-        <h2 id="input-title">Your essay</h2>
-        <div class="recent" id="recent-wrap" hidden>
-          <label for="recent" class="sr-only">Open a recent report</label>
-          <select id="recent" class="select-sm"><option value="">Recent reports</option></select>
+  <main id="main">
+    <!-- ================= Landing ================= -->
+    <section class="view view-landing" id="view-landing" aria-labelledby="landing-title">
+      <div class="landing-grid">
+        <div class="landing-copy">
+          <p class="kicker">Automated essay feedback</p>
+          <h1 id="landing-title" class="display">Detailed feedback on your writing, <span class="soft">without waiting for a manual review.</span></h1>
+          <p class="lede">Submit an essay and get a structured report: what works, what to improve, why it matters and what to do next. Every comment is tied to the student's own words.</p>
+          <ul class="criteria-strip" aria-label="The four feedback criteria">
+            <li><b>Grammar &amp; Mechanics</b><span>Correct, readable sentences</span></li>
+            <li><b>Coherence &amp; Organization</b><span>Logical flow and structure</span></li>
+            <li><b>Argument Strength</b><span>Claims, evidence, reasoning</span></li>
+            <li><b>Originality &amp; Voice</b><span>Specific, distinctive ideas</span></li>
+          </ul>
+          <div class="cta-row">
+            <button class="btn btn-primary btn-lg" type="button" id="cta-analyze" data-flip-id="editor">Analyze an Essay</button>
+            <button class="btn btn-quiet btn-lg" type="button" data-open="samples">Try a Sample Essay</button>
+          </div>
+          <p class="meta-line">No sign-up. Structured first-pass feedback in seconds, so educators can spend their time on higher-value review.</p>
         </div>
+
+        <figure class="preview" aria-label="Example of one feedback item from a report">
+          <div class="preview-sheet">
+            <p class="eyebrow">Feedback report &middot; example item</p>
+            <p class="preview-dim">Argument Strength <b>3 / 5</b></p>
+            <dl class="efw">
+              <div><dt>Your sentence</dt><dd class="quote">&ldquo;<mark class="hl cat-argument">Social media causes students to lose focus.</mark>&rdquo;</dd></div>
+              <div><dt>Why this matters</dt><dd>The claim is clear, but nothing that follows shows <em>why</em> it is true.</dd></div>
+              <div><dt>What to do next</dt><dd>Add one concrete example, then explain how it supports the claim.</dd></div>
+            </dl>
+            <p class="preview-foot">&#10003; Quote verified against the essay</p>
+          </div>
+        </figure>
       </div>
 
-      <div class="samples" id="tour-samples">
-        <span class="label">Start with a sample</span>
-        <div id="sample-list" class="chips"></div>
-      </div>
-
-      <div class="field" id="tour-essay">
-        <label for="essay" class="sr-only">Essay text</label>
-        <textarea id="essay" placeholder="Paste the essay here. At least 50 words." spellcheck="false"></textarea>
-        <div class="meter" aria-hidden="true"><div class="meter-fill" id="meter-fill"></div></div>
-        <div class="row between small">
-          <span id="word-count" class="muted">0 words, 50 needed</span>
-          <span class="row gap-sm">
-            <button type="button" class="link-btn" id="clear-essay" hidden>Clear</button>
-            <label class="link-btn" for="file">Upload .txt</label>
-            <input type="file" id="file" accept=".txt,text/plain" hidden>
-          </span>
-        </div>
-      </div>
-
-      <div class="grid-2" id="tour-options">
-        <label class="field">Student level
-          <select id="grade-level">
-            <option>Middle school (Grades 6-8)</option>
-            <option selected>High school (Grades 9-12)</option>
-            <option>English language learner</option>
-            <option>Undergraduate</option>
-          </select>
-        </label>
-        <label class="field">Essay type
-          <select id="essay-type">
-            <option selected>Argumentative</option>
-            <option>Persuasive</option>
-            <option>Expository</option>
-            <option>Narrative</option>
-            <option>Descriptive</option>
-          </select>
-        </label>
-      </div>
-
-      <details class="more">
-        <summary>Add the assignment question <span class="muted">(optional, improves feedback)</span></summary>
-        <label class="field">
-          <span class="sr-only">Assignment question</span>
-          <input id="assignment" type="text" placeholder="e.g. Should schools ban phones in class?">
-        </label>
-      </details>
-
-      <label class="field" id="access-wrap" hidden>Access code
-        <input id="access-code" type="password" autocomplete="off" placeholder="Ask your team for the code">
-      </label>
-
-      <button id="submit" class="btn btn-dark btn-block btn-lg" type="button" disabled>
-        Get feedback <kbd class="kbd">Ctrl</kbd><kbd class="kbd">Enter</kbd>
-      </button>
-      <div id="error" class="alert" role="alert" hidden></div>
-      <p class="fine-print">Free AI models can take 15-40 seconds. Please don't paste personal information.</p>
+      <section class="pipeline-strip" aria-labelledby="pipeline-title">
+        <h2 id="pipeline-title" class="eyebrow">How the feedback is produced</h2>
+        <ol>
+          <li><b>Preprocess</b><span>Normalize text, split paragraphs and sentences, measure readability</span></li>
+          <li><b>Analyze</b><span>One rubric-guided AI analysis of all four criteria, adapted to essay type and level</span></li>
+          <li><b>Verify</b><span>Every quoted sentence is checked against the essay; unmatched comments are removed</span></li>
+          <li><b>Report</b><span>Strengths, prioritized improvements and next steps, ready to share</span></li>
+        </ol>
+      </section>
     </section>
 
-    <!-- Results card -->
-    <section class="card results-card" aria-live="polite" id="results-card">
-      <div id="empty" class="empty">
-        <div class="empty-illustration" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+    <!-- ================= Submission ================= -->
+    <section class="view view-submit" id="view-submit" hidden aria-labelledby="submit-title">
+      <div class="submit">
+        <div class="revision-banner" id="revision-banner" hidden><b>Revising.</b> <span id="revision-text"></span></div>
+        <div class="submit-head">
+          <h2 id="submit-title" class="h-page">Your essay</h2>
+          <div class="submit-tools">
+            <button class="text-btn" type="button" data-open="samples">Use a sample</button>
+            <label class="text-btn" for="file">Upload .txt</label>
+            <input type="file" id="file" accept=".txt,text/plain" hidden>
+          </div>
         </div>
-        <h3>Your report will appear here</h3>
-        <p class="muted">Pick a sample on the left to see a full example, or paste an essay and press <b>Get feedback</b>.</p>
-        <ul class="empty-list">
-          <li><span class="dot good"></span>What's working, with quotes</li>
-          <li><span class="dot warn"></span>What to fix first, and how</li>
-          <li><span class="dot bad"></span>Every correction with the rule explained</li>
-        </ul>
-      </div>
 
-      <div id="loading" class="loading" hidden>
-        <h3>Reading the essay&hellip;</h3>
-        <ol class="progress-steps" id="progress-steps"></ol>
-        <p class="muted small">Usually 15-40 seconds on the free AI tier.</p>
-      </div>
+        <div class="editor" data-flip-id="editor">
+          <label for="essay" class="sr-only">Essay text (required)</label>
+          <textarea id="essay" placeholder="Paste or write the essay here&hellip;" spellcheck="true" aria-describedby="unlock"></textarea>
+        </div>
+        <div class="submit-status">
+          <span id="word-count" class="meta" aria-live="polite">0 words</span>
+          <span class="meta" id="save-state">Drafts are saved in this browser</span>
+        </div>
 
-      <div id="results" hidden>
-        <div class="results-toolbar">
-          <div class="row gap-sm wrap">
-            <label class="switch" title="Hide corrections and model rewrites so the student tries first">
-              <input type="checkbox" id="student-mode"><span class="switch-track"></span>
-              <span>Try it yourself</span>
+        <fieldset class="context">
+          <legend class="h-section">Context <span class="meta">optional; makes the feedback more specific</span></legend>
+          <div class="context-fields">
+            <label class="field"><span>Essay type</span>
+              <select id="essay-type">
+                <option selected>Argumentative</option>
+                <option>Persuasive</option>
+                <option>Expository</option>
+                <option>Narrative</option>
+                <option>Descriptive</option>
+              </select>
+            </label>
+            <label class="field"><span>Academic level</span>
+              <select id="grade-level">
+                <option>Middle school (Grades 6-8)</option>
+                <option selected>High school (Grades 9-12)</option>
+                <option>English language learner</option>
+                <option value="Undergraduate">College / undergraduate</option>
+              </select>
+            </label>
+            <label class="field field-wide"><span>Assignment prompt</span>
+              <input id="assignment" type="text" placeholder="e.g. Should schools ban phones in class? Feedback will check the essay answers it.">
+            </label>
+            <label class="field field-wide" id="access-wrap" hidden><span>Access code</span>
+              <input id="access-code" type="password" autocomplete="off" placeholder="Ask your team for the code">
             </label>
           </div>
-          <div class="row gap-sm wrap">
-            <button class="btn btn-ghost btn-sm" type="button" id="read-aloud" title="Read the summary aloud">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
-              <span>Listen</span>
-            </button>
-            <button class="btn btn-ghost btn-sm" type="button" id="copy-report">Copy</button>
-            <button class="btn btn-ghost btn-sm" type="button" id="download">Download</button>
-          </div>
+        </fieldset>
+
+        <div class="submit-actions">
+          <button class="btn btn-primary btn-lg" type="button" id="generate" disabled>Generate Feedback <span aria-hidden="true">&rarr;</span></button>
+          <p class="unlock" id="unlock">Add at least 50 words to generate feedback.</p>
         </div>
-
-        <div class="overview" id="tour-overview">
-          <div class="score-ring" id="overall-ring" title="Overall score out of 5"><span id="overall-score">-</span><small>overall</small></div>
-          <div class="overview-text">
-            <p id="overall-summary" class="summary"></p>
-            <div id="criteria-bars" class="bars"></div>
-          </div>
-        </div>
-
-        <div class="cards-3">
-          <div class="mini-card good"><h3>What's working</h3><ul id="top-strengths"></ul></div>
-          <div class="mini-card focus"><h3>Fix these first</h3><ol id="top-priorities"></ol></div>
-          <div class="mini-card exercise"><h3>Practice task</h3><p id="exercise"></p></div>
-        </div>
-
-        <nav class="tabs" id="tabs" role="tablist" aria-label="Report sections"></nav>
-        <div id="tab-body" class="tab-body" role="tabpanel"></div>
-
-        <footer class="result-footer">
-          <span id="verification" class="small muted"></span>
-          <button class="link-btn small" type="button" id="new-essay">Start a new essay</button>
-        </footer>
+        <div class="inline-error" id="inline-error" role="alert" hidden></div>
       </div>
+    </section>
+
+    <!-- ================= Analysis ================= -->
+    <section class="view view-analysis" id="view-analysis" hidden aria-live="polite" aria-labelledby="an-title">
+      <div class="analysis">
+        <p class="eyebrow">Feedback pipeline</p>
+        <h2 id="an-title" class="display-sm">Analyzing the essay</h2>
+        <ol class="stages" id="stages"></ol>
+        <p class="meta small">These are pipeline steps, not the model's internal reasoning. One structured AI analysis covers all four criteria; every quote is then checked against the essay. Free models usually take 10&ndash;40 seconds.</p>
+      </div>
+    </section>
+
+    <!-- ================= Error ================= -->
+    <section class="view view-error" id="view-error" hidden role="alert">
+      <div class="error-panel">
+        <h2 class="display-sm" id="error-title">The feedback service is temporarily unavailable.</h2>
+        <p class="lede-sm" id="error-text"></p>
+        <p class="saved-note">&#10003; The essay is still saved in this browser.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" type="button" id="error-retry">Try again</button>
+          <button class="btn btn-quiet" type="button" id="error-edit">Back to the essay</button>
+        </div>
+        <details class="tech" id="error-tech" hidden><summary>Technical details</summary><pre id="error-raw"></pre></details>
+      </div>
+    </section>
+
+    <!-- ================= Feedback report ================= -->
+    <section class="view view-report" id="view-report" hidden aria-labelledby="report-title">
+      <div class="report-layout">
+        <article class="report" id="report"><!-- rendered by app.js --></article>
+        <aside class="essay-panel" id="essay-panel" aria-labelledby="essay-panel-title"><!-- rendered by app.js --></aside>
+      </div>
+      <button class="back-chip" type="button" id="back-chip" hidden>&uarr; Back to feedback</button>
     </section>
   </main>
 
-  <!-- Rubric dialog -->
-  <dialog id="rubric-dialog" class="dialog" aria-labelledby="rubric-title">
-    <div class="dialog-head">
-      <h2 id="rubric-title">How essays are scored</h2>
-      <button class="icon-btn" type="button" data-close aria-label="Close">&times;</button>
+  <!-- ================= Drawers ================= -->
+  <dialog class="drawer" id="dlg-samples" aria-labelledby="dlg-samples-title">
+    <div class="drawer-head"><h2 id="dlg-samples-title" class="h-section">Sample essays</h2><button class="icon-btn" type="button" data-close aria-label="Close">&times;</button></div>
+    <div class="drawer-body">
+      <p class="meta">Four different essays. Different types and quality levels produce different reports.</p>
+      <div class="sample-list" id="sample-list"></div>
+      <div id="recent-section"></div>
     </div>
-    <div id="rubric-body" class="dialog-body"></div>
   </dialog>
 
-  <!-- Guided tour layers -->
-  <div id="tour-spot" class="tour-spot" hidden></div>
-  <div id="tour-card" class="tour-card" role="dialog" aria-live="polite" hidden>
-    <div class="tour-meta"><span id="tour-count"></span><button class="link-btn small" type="button" id="tour-skip">Skip tour</button></div>
-    <h3 id="tour-title"></h3>
-    <p id="tour-text"></p>
-    <div class="tour-actions">
-      <button class="btn btn-ghost btn-sm" type="button" id="tour-back">Back</button>
-      <button class="btn btn-dark btn-sm" type="button" id="tour-next">Next</button>
+  <dialog class="drawer" id="dlg-rubric" aria-labelledby="dlg-rubric-title">
+    <div class="drawer-head"><h2 id="dlg-rubric-title" class="h-section">Feedback criteria</h2><button class="icon-btn" type="button" data-close aria-label="Close">&times;</button></div>
+    <div class="drawer-body" id="rubric-body"></div>
+  </dialog>
+
+  <dialog class="drawer" id="dlg-eval" aria-labelledby="dlg-eval-title">
+    <div class="drawer-head"><h2 id="dlg-eval-title" class="h-section">Model evaluation</h2><button class="icon-btn" type="button" data-close aria-label="Close">&times;</button></div>
+    <div class="drawer-body" id="eval-body"></div>
+  </dialog>
+
+  <dialog class="modal" id="dlg-about" aria-labelledby="dlg-about-title">
+    <div class="drawer-head"><h2 id="dlg-about-title" class="h-section">How it works</h2><button class="icon-btn" type="button" data-close aria-label="Close">&times;</button></div>
+    <div class="drawer-body prose">
+      <p>The Essay Feedback Generator produces the kind of structured, evidence-based feedback a teacher would otherwise write by hand, across the four criteria in the brief: grammar, coherence, argument strength and originality.</p>
+      <ol>
+        <li><b>Preprocess</b>: normalize the text, split paragraphs and sentences, and measure sentence length and reading level.</li>
+        <li><b>Analyze</b>: one AI call with a written 1&ndash;5 rubric, the essay type, the student's level and the assignment prompt. It returns structured JSON: scores, strengths, improvements with reasons and next steps, corrections, and argument structure.</li>
+        <li><b>Verify</b>: every quoted sentence is matched against the essay. Comments whose quote can't be found are removed.</li>
+        <li><b>Report</b>: the result is shown with each comment linked to the student's words, and can be printed, copied or downloaded.</li>
+      </ol>
+      <p><b>Models.</b> Free-tier Groq (gpt-oss-120b) with Google Gemini as automatic backup. <span id="about-model"></span></p>
+      <p><b>Honest limits.</b> Scores are guidance on this rubric, not an official grade. Originality means fresh ideas and specific expression; it is <em>not</em> plagiarism or AI detection. Teachers should review feedback before grading.</p>
+      <p><b>Privacy.</b> No accounts. Drafts and recent reports stay in this browser. Essays are sent to a free AI service, so don't include personal information.</p>
     </div>
-  </div>
+  </dialog>
 
   <div id="toast" class="toast" role="status" hidden></div>
 
-  <footer class="site-footer container small muted">
-    Built for TCS Technology Day &middot; Feedback is AI-generated guidance; teachers should review before grading.
-  </footer>
-
-  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

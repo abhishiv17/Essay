@@ -36,6 +36,7 @@ import csv
 import json
 import random
 import sys
+import time
 from datetime import datetime
 
 from core import config
@@ -54,14 +55,84 @@ ELLIPSE_MAP = {"grammar": "grammar", "coherence": "cohesion", "overall": "overal
 DATASET_NAMES = {"ellipse": "ELLIPSE", "persuade": "PERSUADE 2.0", "asap": "ASAP 2.0"}
 
 
+PACE = 0.0          # seconds to wait after each live (uncached) model call; set with --pace (free-tier limits)
+GROUNDING: list[float] = []
+MODELS_USED: set[str] = set()
+
+
 def _save(name: str, data: dict, markdown: str) -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     data["run_at"] = datetime.now().isoformat(timespec="seconds")
     data["model"] = config.MODEL_LABEL
+    data["models_used"] = sorted(MODELS_USED)
+    if GROUNDING:
+        data["grounding_rate"] = round(sum(GROUNDING) / len(GROUNDING), 3)
+        data["grounding_n"] = len(GROUNDING)
     (RESULTS_DIR / f"{name}.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
     (RESULTS_DIR / f"{name}.md").write_text(markdown, encoding="utf-8")
     print(markdown)
     print(f"Saved to {RESULTS_DIR / name}.json / .md")
+    write_summary()
+
+
+def write_summary() -> None:
+    """Collect measured metrics into data/evaluation_summary.json, which the app shows (GET /api/evaluation).
+    Only results that exist are included; nothing is estimated."""
+    def load(name):
+        path = RESULTS_DIR / f"{name}.json"
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+    metrics = []
+
+    def add(mid, label, value, detail, src, n):
+        if value is not None:
+            metrics.append({"id": mid, "label": label, "value": value, "detail": detail, "n": n,
+                            "model": ", ".join(src.get("models_used") or [src.get("model", "")]),
+                            "run_at": src.get("run_at")})
+
+    syn = load("synthetic")
+    if syn:
+        add("grammar_detection", "Grammar error detection", syn.get("error_recall"),
+            f"{syn['detected']} of {syn['planted']} planted errors flagged ({syn['cases']} synthetic essays)",
+            syn, syn["planted"])
+        if syn.get("flaws_total"):
+            add("structural_feedback", "Structural flaw detection", syn.get("flaw_recall"),
+                f"{syn['flaws_total']} planted flaws (e.g. missing counterargument); keyword check, false alarms listed in eval/results/synthetic.md",
+                syn, syn["flaws_total"])
+    arg = load("argument")
+    if arg:
+        add("argument_assessment", "Argument structure accuracy", arg.get("overall_accuracy"),
+            f"7 argument parts vs PERSUADE 2.0 expert annotations, {arg['n']} essays", arg, arg["n"])
+    ell = load("ellipse")
+    if ell:
+        for key, label in (("grammar", "Grammar score agreement"), ("coherence", "Coherence score agreement")):
+            m = ell["metrics"].get(key)
+            if m:
+                add(f"ellipse_{key}", label, m["within_1"],
+                    f"within 1 point of human raters (ELLIPSE, {m['n']} essays)", ell, m["n"])
+    for name in ("persuade", "asap"):
+        h = load(name)
+        if h:
+            add(f"{name}_overall", "Overall score agreement", h["metrics"]["within_1"],
+                f"within 1 point of human holistic scores ({h['dataset']}, {h['metrics']['n']} essays)",
+                h, h["metrics"]["n"])
+    rel = load("relevance")
+    if rel:
+        add("relevance", "Feedback relevance", rel["overall"],
+            f"rated relevant and accurate by people ({rel['n']} items)", rel, rel["n"])
+    runs = [r for r in (load(n) for n in ("synthetic", "argument", "ellipse", "persuade", "asap"))
+            if r and r.get("grounding_n")]
+    if runs:
+        total = sum(r["grounding_n"] for r in runs)
+        rate = sum(r["grounding_rate"] * r["grounding_n"] for r in runs) / total
+        add("grounding", "Quote grounding", round(rate, 3),
+            f"quoted comments found verbatim in the essay ({total} reports)",
+            {"models_used": sorted({m for r in runs for m in r.get("models_used", [])}),
+             "run_at": max(r["run_at"] for r in runs)}, total)
+
+    out = {"generated_at": datetime.now().isoformat(timespec="seconds"), "metrics": metrics,
+           "note": "Measured with eval/run_eval.py on small samples; methods in docs/AI_APPROACH.md."}
+    (config.DATA_DIR / "evaluation_summary.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
 
 
 def _scores(result: dict) -> dict:
@@ -73,10 +144,15 @@ def _scores(result: dict) -> dict:
 
 def _run(text: str, options: FeedbackOptions) -> dict | None:
     try:
-        return generate_feedback(text, options, cache_dir=EVAL_CACHE)
+        result = generate_feedback(text, options, cache_dir=EVAL_CACHE)
     except Exception as e:  # keep going; one bad essay shouldn't kill the run
         print(f"  skipped: {e}")
         return None
+    GROUNDING.append(result["verification"]["grounding_rate"])
+    MODELS_USED.add(result["model"])
+    if PACE and not result.get("from_cache"):
+        time.sleep(PACE)  # stay under free-tier tokens-per-minute limits
+    return result
 
 
 # ---------- metrics ----------
@@ -435,6 +511,8 @@ def relevance_score(_args) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--pace", type=float, default=0,
+                        help="seconds to wait after each live model call (e.g. 40 for the Groq free tier)")
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("synthetic").set_defaults(func=run_synthetic)
     p = sub.add_parser("ellipse")
@@ -455,6 +533,8 @@ def main() -> None:
     sub.add_parser("relevance-export").set_defaults(func=relevance_export)
     sub.add_parser("relevance-score").set_defaults(func=relevance_score)
     args = parser.parse_args()
+    global PACE
+    PACE = args.pace
     args.func(args)
 
 

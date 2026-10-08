@@ -9,7 +9,7 @@
 
 The skeleton is **already built and working in mock mode**: backend, frontend, verifier, eval scripts and docs. We are **not** starting from zero. Today's work is:
 
-1. **Make it real.** Connect the free Gemini + Groq models and get good feedback on real essays.
+1. **Make it real.** Connect the free Groq + Gemini models and get good feedback on real essays.
 2. **Make it good.** Tune the prompt until the feedback is accurate, specific and teaches something.
 3. **Prove it.** Produce eval numbers that support the 80%+ accuracy and relevance claim.
 4. **Ship it.** Live Vercel URL, finished docs, demo video.
@@ -62,8 +62,8 @@ At each checkpoint, the team takes a **5-minute standup**: what's done, what's b
   uvicorn app:app --reload        # http://localhost:8000
   ```
 - [ ] **Everyone creates their own free keys** (quotas are per account, so 4 people = 4× the quota):
-  - Gemini: https://aistudio.google.com/apikey → `GEMINI_API_KEY`
-  - Groq: https://console.groq.com/keys → `GROQ_API_KEY`
+  - Groq (main): https://console.groq.com/keys → `GROQ_API_KEY`
+  - Gemini (backup): https://aistudio.google.com/apikey → `GEMINI_API_KEY`
 
   Put them in your own `.env` (never in git), then run `python -m core.llm test`. B can also work in mock mode.
 - [ ] D keeps one **separate pair of keys for the deployed demo**, so eval runs never use up the demo's quota.
@@ -76,7 +76,7 @@ At each checkpoint, the team takes a **5-minute standup**: what's done, what's b
 ## 4. Phase 1: First real output (H+0:20 – 1:00)
 
 ### A: AI / Prompt
-- [ ] Set `MOCK_LLM=0` with your Gemini and Groq keys, then run all 4 samples through the UI.
+- [ ] Set `MOCK_LLM=0` with your Groq and Gemini keys, then run all 4 samples through the UI.
 - [ ] Note how long each essay takes and which model answered (shown at the bottom of the results).
 - [ ] Check the grounding rate in the results footer. If items are being dropped, find out why: the model may be paraphrasing quotes.
 - [ ] Write down the 3 worst problems you see in the output (vague comments, wrong scores, missed errors and so on). These are your Phase 2 targets.
@@ -140,7 +140,7 @@ Pick from this list in order and stop when it's good:
 - [ ] `python -m eval.run_eval synthetic`: planted-error recall + structural-flaw recall (check the false-alarm column too).
 - [ ] `python -m eval.run_eval ellipse --n 30`: grammar and coherence score agreement.
 - [ ] `python -m eval.run_eval argument --n 30`: argument checklist vs PERSUADE expert annotations. **This is our strongest "argument feedback" evidence.**
-- [ ] `python -m eval.run_eval holistic --dataset persuade --n 30`: holistic agreement on independent essays (main). Optionally `--dataset asap` as a source-based secondary check. *Free-tier budget: each essay is one request. Gemini's free daily cap may be only a few hundred requests and about 10 per minute, so a 30-essay run takes a few minutes. Split eval runs across teammates' keys, and start with `--n 10`. Results are cached in `eval/cache/`, so re-runs are free.*
+- [ ] `python -m eval.run_eval holistic --dataset persuade --n 30`: holistic agreement on independent essays (main). Optionally `--dataset asap` as a source-based secondary check. *Free-tier budget: each essay is one request. Groq allows about 1,000 requests a day and about 8,000 tokens a minute (roughly one essay every 40 to 60 seconds at full speed), so a 30-essay run takes 20 to 30 minutes. Gemini models allow as few as 20 a day each. Split eval runs across teammates' keys, and start with `--n 10`. Results are cached in `eval/cache/`, so re-runs are free.*
 - [ ] After the samples and ELLIPSE runs have produced cached results: `python -m eval.run_eval relevance-export`, then split the sheet among teammates. Each rates about 25 rows with 1 (relevant and accurate) or 0. Then run `relevance-score`.
 - [ ] Share the numbers with A. If a metric is under 80%, find the failure pattern (which error types are missed, which criterion is off).
 
@@ -215,6 +215,8 @@ Meanwhile:
 
 ## 9. Demo video script (about 3 minutes)
 
+> **Updated script for the realigned product: [docs/DEMO.md](DEMO.md).** The table below is the original plan.
+
 | Time | Show | Say (roughly) |
 |---|---|---|
 | 0:00–0:20 | Title or landing page | "Teachers spend hours on essay feedback, and existing tools only fix grammar. We built an AI writing coach that gives teacher-quality feedback in seconds." |
@@ -223,7 +225,7 @@ Meanwhile:
 | 1:30–1:55 | **Strong essay** | "It recognizes real strengths: the rebuttal, the evidence. It doesn't invent problems." |
 | 1:55–2:15 | **Narrative** + stretch feature | "It adapts to essay type and student level." (Show the stretch feature here.) |
 | 2:15–2:45 | Grounding note + **eval results table** | "Every quote is checked against the essay, so there are no hallucinated comments. We measured X% error-detection recall, Y% agreement with human graders and Z% relevance." |
-| 2:45–3:00 | Architecture slide or closing | "FastAPI on Vercel with free-tier Gemini and automatic Groq backup, rubric-driven, quote-grounded. Thank you." |
+| 2:45–3:00 | Architecture slide or closing | "FastAPI on Vercel with free-tier Groq and automatic Gemini backup, rubric-driven, quote-grounded. Thank you." |
 
 Recording tips: 1080p, browser zoom 110–125%, close other tabs, use cached results for instant loads, and use a clean browser profile without bookmarks.
 
@@ -233,9 +235,9 @@ Recording tips: 1080p, browser zoom 110–125%, close other tabs, use cached res
 
 | Risk | Fallback |
 |---|---|
-| API key or quota problems | Groq fallback kicks in automatically; mock mode for UI work; cached results for the demo; use a teammate's key |
+| API key or quota problems | Gemini fallback kicks in automatically; mock mode for UI work; cached results for the demo; use a teammate's key |
 | Slow responses (> 45s) | The demo uses the committed cache, so it's instant |
-| Free-tier quota used up | Automatic Groq fallback; teammates' keys; committed demo cache; the quota resets daily |
+| Free-tier quota used up | Automatic Gemini fallback (several models); teammates' keys; committed demo cache; the quota resets daily |
 | Vercel deploy breaks | Check the function logs; roll back to the previous deployment in the Vercel dashboard (one click); demo locally as a last resort |
 | Venue Wi-Fi fails | Record the video early with cached results; phone hotspot |
 | Merge conflicts | File ownership (section 1); pull before you push; small commits |

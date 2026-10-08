@@ -1,0 +1,192 @@
+{
+  "essay": "The Day the Lights Went Out\n\nThe power went out at 7:42 p.m. on a Tuesday, right in the middle of my math homework. I remember the exact time because the microwave clock blinked once and then died, like it was giving up on me too.\n\nAt first, everyone in the house reacted the way you would expect. My little brother screamed. My dad said a word he later pretended he had not said. My mom started opening drawers looking for candles we had not bought in years. I just sat at the kitchen table with my pencil still in my hand, staring at a problem about the volume of a cylinder that I suddenly could not see.\n\nWe found two candles, one of them shaped like the number 7 from my brother's birthday cake. We put them in the middle of the table and, because there was nothing else to do, we all sat down. No phones, because we were saving the batteries. No TV. No laptop humming in the corner. Just the four of us and a little wax seven slowly melting.\n\nMy dad started telling a story about the time the power went out when he was a kid in Pune, during the monsoon, and how his grandmother made everyone sing old film songs until the lights came back. Then he started singing one, very badly. My brother laughed so hard he snorted, which made my mom laugh, which made me laugh, and then we were all laughing at nothing in particular in the dark.\n\nThe lights came back at 9:15. The fridge shuddered back to life, the Wi-Fi router blinked its green eyes, and my brother immediately ran to the TV. Everything went back to normal so fast it was almost rude.\n\nI still have not finished that cylinder problem. But I think about that night more than I think about most days with electricity. It is strange to realize that the brightest evening my family had that year happened in the dark.",
+  "stats": {
+    "words": 341,
+    "sentences": 23,
+    "paragraphs": 7,
+    "avg_sentence_length": 14.8,
+    "long_sentences": 1,
+    "lexical_diversity": 0.54,
+    "flesch_reading_ease": 77.9,
+    "grade_level": 6.1
+  },
+  "options": {
+    "grade_level": "High school (Grades 9-12)",
+    "essay_type": "Narrative",
+    "assignment_prompt": ""
+  },
+  "feedback": {
+    "argument_structure": [
+      {
+        "element": "lead",
+        "present": true,
+        "quote": "The power went out at 7:42 p.m. on a Tuesday, right in the middle of my math homework.",
+        "verified": true
+      },
+      {
+        "element": "position",
+        "present": true,
+        "quote": "It is strange to realize that the brightest evening my family had that year happened in the dark.",
+        "verified": true
+      },
+      {
+        "element": "claim",
+        "present": true,
+        "quote": "the brightest evening my family had that year happened in the dark.",
+        "verified": true
+      },
+      {
+        "element": "counterclaim",
+        "present": false,
+        "quote": "",
+        "verified": true
+      },
+      {
+        "element": "rebuttal",
+        "present": false,
+        "quote": "",
+        "verified": true
+      },
+      {
+        "element": "evidence",
+        "present": true,
+        "quote": "We found two candles, one of them shaped like the number 7 from my brother's birthday cake... My dad started telling a story about the time the power went out when he was a kid in Pune...",
+        "verified": true
+      },
+      {
+        "element": "concluding_statement",
+        "present": true,
+        "quote": "It is strange to realize that the brightest evening my family had that year happened in the dark.",
+        "verified": true
+      }
+    ],
+    "criteria": [
+      {
+        "criterion": "grammar",
+        "score": 4,
+        "summary": "The essay is largely free of errors; a few minor punctuation issues appear but do not impede comprehension.",
+        "strengths": [],
+        "improvements": [
+          {
+            "quote": "My dad started telling a story about the time the power went out when he was a kid in Pune, during the monsoon, and how his grandmother made everyone sing old film songs until the lights came back. Then he started singing one, very badly.",
+            "issue": "Two independent clauses are linked only by a period, creating a choppy rhythm and a comma splice in the second sentence.",
+            "suggestion": "Combine the sentences with a conjunction or a semicolon, and place the adverbial phrase correctly.",
+            "example_rewrite": "My dad started telling a story about the time the power went out when he was a kid in Pune during the monsoon, and how his grandmother made everyone sing old film songs until the lights came back; then he began singing one, very badly.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "coherence",
+        "score": 5,
+        "summary": "The narrative follows a clear chronological order with smooth transitions, giving the reader a strong sense of beginning, middle, and end.",
+        "strengths": [
+          {
+            "quote": "At first, everyone in the house reacted the way you would expect.",
+            "comment": "This sentence signals a shift from the hook to the body, helping the reader follow the story.",
+            "verified": true
+          },
+          {
+            "quote": "The lights came back at 9:15.",
+            "comment": "This provides a natural climax and leads neatly into the conclusion.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "",
+            "issue": "No major coherence issues detected.",
+            "suggestion": "",
+            "example_rewrite": "",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "argument",
+        "score": 3,
+        "summary": "The essay presents a reflective insight about family connection in darkness, but the central claim is not explicitly framed as a thesis and supporting ideas are left implicit.",
+        "strengths": [
+          {
+            "quote": "It is strange to realize that the brightest evening my family had that year happened in the dark.",
+            "comment": "This sentence offers a thoughtful conclusion that hints at the essay\u2019s main point.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "I still have not finished that cylinder problem.",
+            "issue": "The sentence introduces an unrelated detail that distracts from the main insight.",
+            "suggestion": "Tie the unfinished math problem back to the theme, or remove it to keep focus on the central claim.",
+            "example_rewrite": "Even though I still haven\u2019t finished that cylinder problem, the memory of that dark evening stays brighter than any solution.",
+            "verified": true
+          },
+          {
+            "quote": "My dad started telling a story... then he started singing one, very badly.",
+            "issue": "The anecdote is vivid but isn\u2019t explicitly linked to the essay\u2019s central idea.",
+            "suggestion": "Add a brief explanation of how the story and singing illustrate the theme of connection in darkness.",
+            "example_rewrite": "My dad\u2019s story and off\u2011key singing reminded us that, without electricity, we were forced to create our own light through laughter and shared memories.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "originality",
+        "score": 5,
+        "summary": "The voice is personal and lively, with specific, unexpected details (candles shaped like a birthday\u2011cake number, a story from Pune) that make the narrative memorable.",
+        "strengths": [
+          {
+            "quote": "We found two candles, one of them shaped like the number 7 from my brother's birthday cake.",
+            "comment": "A concrete, original image that instantly visualizes the scene.",
+            "verified": true
+          },
+          {
+            "quote": "My dad started telling a story about the time the power went out when he was a kid in Pune, during the monsoon...",
+            "comment": "The cultural reference adds depth and uniqueness to the narrative.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "",
+            "issue": "No significant originality issues detected.",
+            "suggestion": "",
+            "example_rewrite": "",
+            "verified": true
+          }
+        ]
+      }
+    ],
+    "grammar_errors": [
+      {
+        "quote": "Then he started singing one, very badly.",
+        "correction": "Then he started singing one very badly.",
+        "error_type": "punctuation",
+        "explanation": "The comma after \"one\" incorrectly separates the adverb \"very badly\" from the verb phrase; no pause is needed.",
+        "verified": true
+      }
+    ],
+    "overall_score": 4,
+    "overall_summary": "You tell a vivid, personal story with a strong sense of voice and clear organization. Minor punctuation tweaks and a sharper articulation of your main insight will raise the essay to the next level. Keep drawing on those specific details\u2014they make your writing stand out.",
+    "top_strengths": [
+      "Engaging, specific details that create a vivid picture.",
+      "Logical, chronological structure with smooth transitions.",
+      "A clear, memorable voice that draws the reader in."
+    ],
+    "top_priorities": [
+      "Make the central insight explicit as a thesis statement.",
+      "Connect each anecdote directly to that central idea.",
+      "Polish punctuation (especially commas) for smoother reading."
+    ],
+    "next_step_exercise": "Write a short paragraph (4\u20115 sentences) that restates your main insight about darkness and family connection, using a clear thesis statement and at least two pieces of evidence from the story."
+  },
+  "verification": {
+    "items_checked": 12,
+    "items_unverified": 1,
+    "grounding_rate": 0.917,
+    "dropped": true
+  },
+  "model": "groq:openai/gpt-oss-120b",
+  "generated_at": "2026-10-08T09:45:58+00:00",
+  "from_cache": false
+}

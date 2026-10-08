@@ -1,0 +1,267 @@
+{
+  "essay": "Should Schools Start Later? The Case for Letting Teenagers Sleep\n\nEvery weekday at 6:15 a.m., my alarm drags me out of a sleep my body insists is not finished. I am not lazy; I am biologically a teenager. Research on adolescent sleep shows that during puberty the body releases melatonin roughly two hours later than it does in children or adults, which means most teenagers cannot fall asleep before 11 p.m. no matter how early they go to bed. Schools that start before 8:30 a.m. are therefore asking students to learn during what is, for their brains, the middle of the night. School districts should move high school start times to 8:30 a.m. or later, because doing so improves health, academic performance, and safety.\n\nThe strongest reason is health. The American Academy of Pediatrics recommends that teenagers get eight to ten hours of sleep, yet surveys consistently find that most high school students get fewer than eight on school nights. Chronic sleep loss is linked to depression, weakened immune systems, and weight gain. When a student loses an hour of sleep every day, the deficit does not disappear on the weekend; it accumulates. A later start time does not ask students to change their biology, it simply stops punishing them for it.\n\nLater start times also lead to better learning. When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose and the number of students falling asleep in class dropped. Some schools also reported modest gains in grades in first-period classes, which makes sense: a student who is awake can actually absorb the lesson on the board instead of merely copying it. If the goal of school is learning, then scheduling classes for the hours when students' brains are most alert is not a luxury but common sense.\n\nFinally, there is the issue of safety. Teenage drivers are already the most at-risk group on the road, and drowsy driving makes the danger worse. After one Wyoming district delayed its start time, car crashes involving teen drivers fell noticeably. Fewer exhausted sixteen-year-olds behind the wheel at dawn is a benefit that extends to everyone sharing the road with them.\n\nCritics argue that later start times would disrupt after-school sports, part-time jobs, and bus schedules, and these concerns are real. However, many districts that made the change adjusted practice schedules and staggered bus routes with fewer problems than expected. More importantly, a schedule built around convenience for adults should not outweigh the well-being of the students the system exists to serve. Logistics can be redesigned; a teenager's circadian rhythm cannot.\n\nStarting school later is not about pampering teenagers. It is about aligning education with what science tells us about how young people's bodies work. Healthier, more alert, and safer students are worth a few rearranged bus routes. It is time for school boards to let teenagers sleep, and then let them learn.",
+  "stats": {
+    "words": 504,
+    "sentences": 28,
+    "paragraphs": 7,
+    "avg_sentence_length": 18.0,
+    "long_sentences": 1,
+    "lexical_diversity": 0.55,
+    "flesch_reading_ease": 59.1,
+    "grade_level": 9.5
+  },
+  "options": {
+    "grade_level": "High school (Grades 9-12)",
+    "essay_type": "Argumentative",
+    "assignment_prompt": ""
+  },
+  "feedback": {
+    "overall_score": 4,
+    "overall_summary": "Your essay makes a clear, evidence\u2011based case for later school start times and demonstrates solid organization and voice. The writing is mostly clean, though a few recurring grammatical slips keep it from being flawless. Focusing on those patterns and sharpening the connection between evidence and your main claim will raise the essay to the next level.",
+    "top_strengths": [
+      "Strong, research\u2011based evidence supporting the thesis",
+      "Clear, logical organization with effective transitions",
+      "Engaging personal hook that draws the reader in"
+    ],
+    "top_priorities": [
+      "Eliminate recurring subject\u2011verb agreement and article errors",
+      "Add a brief explicit counterclaim statement before the rebuttal",
+      "Vary sentence openings to avoid repetitive structures"
+    ],
+    "next_step_exercise": "Write five short sentences about the same topic, each containing a different type of subject\u2011verb agreement error (e.g., singular vs. plural) and then correct them. This will reinforce the rule and help you spot similar mistakes in longer writing.",
+    "argument_structure": [
+      {
+        "element": "lead",
+        "present": true,
+        "quote": "Every weekday at 6:15 a.m., my alarm drags me out of a sleep my body insists is not finished.",
+        "verified": true
+      },
+      {
+        "element": "position",
+        "present": true,
+        "quote": "School districts should move high school start times to 8:30 a.m. or later, because doing so improves health, academic performance, and safety.",
+        "verified": true
+      },
+      {
+        "element": "claim",
+        "present": true,
+        "quote": "The strongest reason is health.",
+        "verified": true
+      },
+      {
+        "element": "counterclaim",
+        "present": true,
+        "quote": "Critics argue that later start times would disrupt after\u2011school sports, part\u2011time jobs, and bus schedules, and these concerns are real.",
+        "verified": false
+      },
+      {
+        "element": "rebuttal",
+        "present": true,
+        "quote": "However, many districts that made the change adjusted practice schedules and staggered bus routes with fewer problems than expected.",
+        "verified": true
+      },
+      {
+        "element": "evidence",
+        "present": true,
+        "quote": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose and the number of students falling asleep in class dropped.",
+        "verified": true
+      },
+      {
+        "element": "concluding_statement",
+        "present": true,
+        "quote": "It is time for school boards to let teenagers sleep, and then let them learn.",
+        "verified": true
+      }
+    ],
+    "criteria": [
+      {
+        "criterion": "grammar",
+        "score": 3,
+        "summary": "The essay is readable, but several recurring errors\u2014especially article use, subject\u2011verb agreement, and comma splices\u2014prevent it from reaching a near\u2011error\u2011free level.",
+        "strengths": [
+          {
+            "quote": "Research on adolescent sleep shows that during puberty the body releases melatonin roughly two hours later than it does in children or adults",
+            "comment": "You use precise, academic phrasing that conveys authority and avoids slang.",
+            "verified": true
+          },
+          {
+            "quote": "When a student loses an hour of sleep every day, the deficit does not disappear on the weekend; it accumulates.",
+            "comment": "Your use of a semicolon correctly links two closely related independent clauses.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "the body releases melatonin roughly two hours later than it does in children or adults, which means most teenagers cannot fall asleep before 11 p.m. no matter how early they go to bed.",
+            "issue": "Missing comma after \"p.m.\" creates a run\u2011on clause.",
+            "suggestion": "Insert a comma after \"p.m.\" to separate the two independent ideas.",
+            "example_rewrite": "\u2026 before 11 p.m., no matter how early they go to bed.",
+            "verified": true
+          },
+          {
+            "quote": "A later start time does not ask students to change their biology, it simply stops punishing them for it.",
+            "issue": "Comma splice \u2013 two independent clauses joined only by a comma.",
+            "suggestion": "Replace the comma with a semicolon or add a coordinating conjunction.",
+            "example_rewrite": "A later start time does not ask students to change their biology; it simply stops punishing them for it.",
+            "verified": true
+          },
+          {
+            "quote": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose and the number of students falling asleep in class dropped.",
+            "issue": "Verb\u2011noun agreement: \"the number of students falling asleep\" is singular, but \"dropped\" is correct; however the sentence is long and could be clearer.",
+            "suggestion": "Break into two sentences for clarity.",
+            "example_rewrite": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose. The number of students falling asleep in class dropped.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "coherence",
+        "score": 5,
+        "summary": "Your essay follows a clear introduction\u2011body\u2011conclusion pattern, each paragraph centers on a single supporting idea, and transitions smoothly between points.",
+        "strengths": [
+          {
+            "quote": "The strongest reason is health.",
+            "comment": "Clear topic sentence that signals the paragraph\u2019s focus.",
+            "verified": true
+          },
+          {
+            "quote": "Later start times also lead to better learning.",
+            "comment": "Effective transition that links the health argument to the learning argument.",
+            "verified": true
+          },
+          {
+            "quote": "Finally, there is the issue of safety.",
+            "comment": "Logical sequencing; you move from health to learning to safety, covering three distinct dimensions.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "",
+            "issue": "The paragraph that addresses the counterclaim could be introduced with a brief signpost before the sentence starting \"Critics argue\u2026\" to make the shift more explicit.",
+            "suggestion": "Add a transition such as \"Some opponents claim\u2026\" before the counterclaim sentence.",
+            "example_rewrite": "Some opponents claim that later start times would disrupt after\u2011school sports, part\u2011time jobs, and bus schedules, and these concerns are real.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "The concluding paragraph repeats the word \"let\" twice in close succession, which slightly disrupts flow.",
+            "suggestion": "Vary word choice for smoother reading.",
+            "example_rewrite": "It is time for school boards to allow teenagers to sleep, and consequently, to learn.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "argument",
+        "score": 4,
+        "summary": "You present a clear thesis and back it with specific, cited evidence. Adding an explicit, separate counterclaim sentence and a brief explanation of how each piece of evidence supports the claim would strengthen the argument further.",
+        "strengths": [
+          {
+            "quote": "School districts should move high school start times to 8:30 a.m. or later, because doing so improves health, academic performance, and safety.",
+            "comment": "A concise thesis that states both the position and the reasons you will develop.",
+            "verified": true
+          },
+          {
+            "quote": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose and the number of students falling asleep in class dropped.",
+            "comment": "Specific study provides credible, concrete evidence for the learning claim.",
+            "verified": true
+          },
+          {
+            "quote": "After one Wyoming district delayed its start time, car crashes involving teen drivers fell noticeably.",
+            "comment": "Concrete safety data directly ties the policy to the outcome you claim.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "However, many districts that made the change adjusted practice schedules and staggered bus routes with fewer problems than expected.",
+            "issue": "The rebuttal states a fact but does not explain why it defeats the counterclaim.",
+            "suggestion": "Add a brief explanation of how these adjustments address the concerns.",
+            "example_rewrite": "However, many districts that made the change adjusted practice schedules and staggered bus routes with fewer problems than expected, showing that logistical hurdles can be managed without harming extracurricular activities.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Each claim (health, learning, safety) is supported, but the essay could benefit from a short sentence that explicitly links the evidence back to the thesis (\u201cTherefore, later start times promote overall student well\u2011being\u201d).",
+            "suggestion": "Insert a linking sentence after each evidence paragraph that restates how that evidence advances your central claim.",
+            "example_rewrite": "Thus, improving sleep health directly contributes to better academic outcomes and safer roads, reinforcing the need for later start times.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "originality",
+        "score": 4,
+        "summary": "Your voice is personal and the use of a vivid opening hook sets the essay apart. Most of the arguments follow common talking points, but the inclusion of specific state examples and the personal tone keep it fresh.",
+        "strengths": [
+          {
+            "quote": "Every weekday at 6:15 a.m., my alarm drags me out of a sleep my body insists is not finished.",
+            "comment": "A vivid, personal opening that engages the reader and establishes credibility.",
+            "verified": true
+          },
+          {
+            "quote": "It is time for school boards to let teenagers sleep, and then let them learn.",
+            "comment": "A memorable, persuasive concluding call\u2011to\u2011action that reflects your own voice.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "",
+            "issue": "Some sentences rely on generic phrases such as \"common sense\" and \"real\u2011world\" which slightly dilute originality.",
+            "suggestion": "Replace vague clich\u00e9s with specific, personal observations or data.",
+            "example_rewrite": "Scheduling classes when students are naturally alert isn\u2019t a luxury; it\u2019s a scientifically backed strategy for effective learning.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "The essay repeats the phrase \"later start times\" many times without variation.",
+            "suggestion": "Use synonyms or pronouns (\"the shift\", \"this change\") to avoid redundancy and keep the voice lively.",
+            "example_rewrite": "This shift also leads to better learning.",
+            "verified": true
+          }
+        ]
+      }
+    ],
+    "grammar_errors": [
+      {
+        "quote": "no matter how early they go to bed.",
+        "correction": "no matter how early they go to bed,",
+        "error_type": "punctuation",
+        "explanation": "A comma is needed after the clause because it is followed by an independent clause.",
+        "verified": true
+      },
+      {
+        "quote": "A later start time does not ask students to change their biology, it simply stops punishing them for it.",
+        "correction": "A later start time does not ask students to change their biology; it simply stops punishing them for it.",
+        "error_type": "punctuation",
+        "explanation": "Two independent clauses cannot be joined with just a comma; use a semicolon or a conjunction.",
+        "verified": true
+      },
+      {
+        "quote": "Research on adolescent sleep shows that during puberty the body releases melatonin roughly two hours later than it does in children or adults, which means most teenagers cannot fall asleep before 11 p.m. no matter how early they go to bed.",
+        "correction": "Research on adolescent sleep shows that during puberty the body releases melatonin roughly two hours later than it does in children or adults, which means most teenagers cannot fall asleep before 11 p.m., no matter how early they go to bed.",
+        "error_type": "punctuation",
+        "explanation": "Insert a comma after \"p.m.\" to separate the adverbial phrase from the following clause.",
+        "verified": true
+      },
+      {
+        "quote": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose and the number of students falling asleep in class dropped.",
+        "correction": "When districts in Minnesota pushed their high school start times back by about an hour, researchers found that attendance rose. The number of students falling asleep in class dropped.",
+        "error_type": "sentence_structure",
+        "explanation": "Two independent ideas are better expressed as separate sentences for clarity.",
+        "verified": true
+      }
+    ]
+  },
+  "verification": {
+    "items_checked": 29,
+    "items_unverified": 6,
+    "grounding_rate": 0.793,
+    "dropped": true
+  },
+  "model": "groq:openai/gpt-oss-120b",
+  "generated_at": "2026-10-08T09:42:15+00:00",
+  "from_cache": false
+}

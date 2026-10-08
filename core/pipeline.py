@@ -6,14 +6,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import config, llm
-from .llm import generate_json
+from .llm import LLMError, generate_json
 from .preprocess import prepare
-from .prompts import SYSTEM_PROMPT, build_user_prompt
+from .prompts import PRACTICE_SYSTEM_PROMPT, SYSTEM_PROMPT, build_practice_prompt, build_user_prompt
 from .rubric import ARGUMENT_KEYS, CRITERION_KEYS, SCORE_MAX, SCORE_MIN
-from .schema import FEEDBACK_SCHEMA
+from .schema import FEEDBACK_SCHEMA, PRACTICE_SCHEMA
 from .verify import verify_feedback
 
-PIPELINE_VERSION = "2"  # bump to invalidate the cache after prompt/schema changes
+PIPELINE_VERSION = "3"  # bump to invalidate the cache after prompt/schema changes
 
 
 @dataclass
@@ -56,6 +56,10 @@ def _tidy(feedback: dict) -> dict:
 
     Claude/Gemini with strict schemas rarely need this; small local or free models sometimes do.
     """
+    if isinstance(feedback, list):  # some models wrap the object in a list
+        feedback = next((x for x in feedback if isinstance(x, dict)), {})
+    if not isinstance(feedback, dict) or not feedback.get("criteria"):
+        raise LLMError("The model returned an incomplete report. Please try again.")
     feedback["overall_score"] = _clamp(feedback.get("overall_score"))
     for key in ("overall_summary", "next_step_exercise"):
         feedback[key] = str(feedback.get(key) or "")
@@ -133,3 +137,22 @@ def generate_feedback(
         cache_file.parent.mkdir(parents=True, exist_ok=True)
         cache_file.write_text(json.dumps(result, indent=2), encoding="utf-8")
     return result
+
+
+MOCK_PRACTICE = {
+    "verdict": "getting_there",
+    "feedback": "Good start: your new version fixes the verb so it agrees with its subject. "
+                "The sentence still reads a little general, so the reader can't picture what you mean yet.",
+    "next_tip": "Add one concrete detail, such as a specific example from your own school.",
+}
+
+
+def check_practice(task: str, original: str, attempt: str, grade_level: str) -> dict:
+    """Short feedback on a student's practice rewrite. Not cached: every attempt is new."""
+    if config.MOCK_LLM:
+        return {**MOCK_PRACTICE, "model": "mock"}
+    out = generate_json(PRACTICE_SYSTEM_PROMPT, build_practice_prompt(task, original, attempt, grade_level),
+                        PRACTICE_SCHEMA)
+    verdict = out.get("verdict") if out.get("verdict") in ("improved", "getting_there", "not_yet") else "getting_there"
+    return {"verdict": verdict, "feedback": str(out.get("feedback") or ""), "next_tip": str(out.get("next_tip") or ""),
+            "model": llm.last_used}

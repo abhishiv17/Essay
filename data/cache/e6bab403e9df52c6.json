@@ -1,0 +1,397 @@
+{
+  "essay": "Technology in Education\n\nIn the modern time, technology is very important for the students. Many school are using computer and tablet in classroom. I think technology help students to learn more better, but also it have some problems.\n\nFirst, technology make the learning more interesting. When teacher show a video about the science, students can see how the things is working. For example in my school we watched a video of volcano and everybody was very exciting. Also students can search informations on internet very fast, they dont need to go to library.\n\nSecond, technology is helping students who is shy. Some student dont like to speak in front of class but they can write there opinion in online forum. My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.\n\nHowever technology have also disadvantage. Students can play games or watch videos instead of study. Sometime I also do this when I am suppose to do homework. Another problem is that not every families can buy a laptop, so some students cannot use it at home. This is not fair for them.\n\nIn conclusion, technology is good for education because it make learning interesting and help shy students. But schools must to control how students use it and also give devices to poor students. If we use technology in correct way, it can make education more better for everyone.",
+  "stats": {
+    "words": 241,
+    "sentences": 19,
+    "paragraphs": 6,
+    "avg_sentence_length": 12.7,
+    "long_sentences": 0,
+    "lexical_diversity": 0.55,
+    "flesch_reading_ease": 58.8,
+    "grade_level": 8.2
+  },
+  "options": {
+    "grade_level": "English language learner",
+    "essay_type": "Argumentative",
+    "assignment_prompt": ""
+  },
+  "feedback": {
+    "argument_structure": [
+      {
+        "element": "lead",
+        "present": false,
+        "quote": "",
+        "verified": true
+      },
+      {
+        "element": "position",
+        "present": true,
+        "quote": "I think technology help students to learn more better, but also it have some problems.",
+        "verified": true
+      },
+      {
+        "element": "claim",
+        "present": true,
+        "quote": "technology make the learning more interesting.",
+        "verified": true
+      },
+      {
+        "element": "counterclaim",
+        "present": true,
+        "quote": "However technology have also disadvantage.",
+        "verified": true
+      },
+      {
+        "element": "rebuttal",
+        "present": false,
+        "quote": "",
+        "verified": true
+      },
+      {
+        "element": "evidence",
+        "present": true,
+        "quote": "My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.",
+        "verified": true
+      },
+      {
+        "element": "concluding_statement",
+        "present": true,
+        "quote": "In conclusion, technology is good for education because it make learning interesting and help shy students.",
+        "verified": true
+      }
+    ],
+    "criteria": [
+      {
+        "criterion": "grammar",
+        "score": 2,
+        "summary": "Frequent errors in agreement, articles, spelling and punctuation sometimes make meaning unclear.",
+        "strengths": [
+          {
+            "quote": "technology make the learning more interesting.",
+            "comment": "You correctly use a simple subject\u2011verb structure, which shows you can build basic sentences.",
+            "verified": true
+          },
+          {
+            "quote": "My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.",
+            "comment": "You link ideas with \u2018but\u2019, showing awareness of coordination.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "technology help students to learn more better",
+            "issue": "Incorrect verb form and comparative phrase; \u2018help\u2019 needs third\u2011person singular \u2018helps\u2019 and \u2018more better\u2019 is redundant.",
+            "suggestion": "Change to \u2018technology helps students learn better.\u2019",
+            "example_rewrite": "technology helps students learn better",
+            "verified": true
+          },
+          {
+            "quote": "Many school are using computer and tablet in classroom.",
+            "issue": "Subject\u2011verb agreement and article usage; \u2018school\u2019 should be plural and \u2018computer\u2019 needs an article.",
+            "suggestion": "Write \u2018Many schools are using computers and tablets in the classroom.\u2019",
+            "example_rewrite": "Many schools are using computers and tablets in the classroom.",
+            "verified": true
+          },
+          {
+            "quote": "students can see how the things is working.",
+            "issue": "Plural noun \u2018things\u2019 with singular verb \u2018is\u2019; also article missing before \u2018things\u2019.",
+            "suggestion": "Use \u2018how things work\u2019 or \u2018how the thing works.\u2019",
+            "example_rewrite": "students can see how things work.",
+            "verified": true
+          },
+          {
+            "quote": "everybody was very exciting.",
+            "issue": "Wrong adjective; \u2018exciting\u2019 describes something that causes excitement, not a feeling. Use \u2018excited\u2019.",
+            "suggestion": "Replace with \u2018very excited.\u2019",
+            "example_rewrite": "everybody was very excited.",
+            "verified": true
+          },
+          {
+            "quote": "they dont need to go to library.",
+            "issue": "Missing apostrophe in contraction and missing article before \u2018library\u2019.",
+            "suggestion": "Write \u2018they don\u2019t need to go to the library.\u2019",
+            "example_rewrite": "they don\u2019t need to go to the library.",
+            "verified": true
+          },
+          {
+            "quote": "technology is helping students who is shy.",
+            "issue": "Relative clause verb agreement; \u2018who is\u2019 should be \u2018who are\u2019 because \u2018students\u2019 is plural.",
+            "suggestion": "Change to \u2018students who are shy.\u2019",
+            "example_rewrite": "technology is helping students who are shy.",
+            "verified": true
+          },
+          {
+            "quote": "they can write there opinion",
+            "issue": "Spelling error \u2018there\u2019 should be \u2018their\u2019; also article \u2018an\u2019 needed before \u2018opinion\u2019.",
+            "suggestion": "Write \u2018they can write their opinion.\u2019",
+            "example_rewrite": "they can write their opinion.",
+            "verified": true
+          },
+          {
+            "quote": "teacher was suprised.",
+            "issue": "Spelling error \u2018suprised\u2019 \u2192 \u2018surprised.\u2019",
+            "suggestion": "Correct the spelling.",
+            "example_rewrite": "teacher was surprised.",
+            "verified": true
+          },
+          {
+            "quote": "However technology have also disadvantage.",
+            "issue": "Verb agreement and article missing; \u2018have\u2019 \u2192 \u2018has\u2019 and \u2018disadvantage\u2019 needs \u2018a\u2019.",
+            "suggestion": "Write \u2018However, technology has also a disadvantage.\u2019",
+            "example_rewrite": "However, technology has also a disadvantage.",
+            "verified": true
+          },
+          {
+            "quote": "Sometime I also do this when I am suppose to do homework.",
+            "issue": "Adverb form \u2018Sometime\u2019 should be \u2018Sometimes\u2019; verb form \u2018suppose\u2019 should be \u2018supposed\u2019.",
+            "suggestion": "Write \u2018Sometimes I also do this when I am supposed to do homework.\u2019",
+            "example_rewrite": "Sometimes I also do this when I am supposed to do homework.",
+            "verified": true
+          },
+          {
+            "quote": "but schools must to control how students use it",
+            "issue": "Extra infinitive \u2018to\u2019; correct form is \u2018must control\u2019.",
+            "suggestion": "Remove \u2018to\u2019: \u2018but schools must control how students use it.\u2019",
+            "example_rewrite": "but schools must control how students use it.",
+            "verified": true
+          },
+          {
+            "quote": "If we use technology in correct way, it can make education more better for everyone.",
+            "issue": "Missing article before \u2018correct way\u2019 and redundant comparative \u2018more better\u2019.",
+            "suggestion": "Write \u2018in the correct way\u2019 and \u2018better\u2019.",
+            "example_rewrite": "If we use technology in the correct way, it can make education better for everyone.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "coherence",
+        "score": 2,
+        "summary": "The essay has a recognizable introduction, body, and conclusion, but paragraph ordering and transitions are weak, causing ideas to jump.",
+        "strengths": [
+          {
+            "quote": "In the modern time, technology is very important for the students.",
+            "comment": "You open with a clear introductory sentence that states the general topic.",
+            "verified": true
+          },
+          {
+            "quote": "In conclusion, technology is good for education because it make learning interesting and help shy students.",
+            "comment": "You provide a concluding sentence that restates your main point.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "First, technology make the learning more interesting. ... Second, technology is helping students who is shy.",
+            "issue": "The body paragraphs are labeled \u2018First\u2019 and \u2018Second\u2019 but the counter\u2011argument appears later, breaking the logical flow.",
+            "suggestion": "Arrange paragraphs as: (1) benefits, (2) drawbacks, (3) rebuttal/solution. Use transition words like \u2018however\u2019 to signal the shift.",
+            "example_rewrite": "First, technology makes learning more interesting. However, it also has disadvantages.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Missing clear topic sentence that signals the main claim of each paragraph.",
+            "suggestion": "Begin each paragraph with a concise topic sentence that states the specific point you will discuss.",
+            "example_rewrite": "Technology makes learning more interesting because it allows visual demonstrations.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Abrupt jumps between ideas (e.g., from volcano video to searching information) without linking sentences.",
+            "suggestion": "Add simple connective phrases such as \u2018In addition,\u2019 or \u2018For example,\u2019 to guide the reader.",
+            "example_rewrite": "In addition, students can quickly search information on the internet.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "argument",
+        "score": 3,
+        "summary": "You state a clear position and give some supporting claims and evidence, but the support is often vague and the counter\u2011claim lacks a rebuttal.",
+        "strengths": [
+          {
+            "quote": "I think technology help students to learn more better, but also it have some problems.",
+            "comment": "Your thesis identifies both a positive stance and acknowledges problems, giving a balanced position.",
+            "verified": true
+          },
+          {
+            "quote": "My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.",
+            "comment": "You provide a concrete example showing how technology helps shy students.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "However technology have also disadvantage.",
+            "issue": "The counter\u2011claim is mentioned but never explained with specific evidence.",
+            "suggestion": "Add a concrete example (e.g., \u2018students may spend class time playing games instead of studying.\u2019) and explain why this weakens the overall benefit.",
+            "example_rewrite": "However, technology also has disadvantages; for instance, some students use tablets to play games during class.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "No rebuttal that addresses the counter\u2011claim.",
+            "suggestion": "Include a sentence that shows how the drawback can be managed (e.g., \u2018Teachers can set usage limits to prevent gaming.\u2019).",
+            "example_rewrite": "Nevertheless, teachers can limit access to non\u2011educational sites, reducing this problem.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Evidence is often vague (\u201cstudents can search informations on internet very fast\u201d).",
+            "suggestion": "Provide specific data or a brief anecdote to make the claim stronger.",
+            "example_rewrite": "Students can find reliable sources in seconds; for example, a recent study showed they locate research articles 40% faster using digital databases.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "originality",
+        "score": 2,
+        "summary": "The essay repeats common arguments about technology and uses several clich\u00e9d phrases; personal anecdotes are present but could be developed further.",
+        "strengths": [
+          {
+            "quote": "My friend Ravi was never talking in class, but in the online discussion he write very good ideas and teacher was suprised.",
+            "comment": "Including a personal example about your friend adds a hint of your own voice.",
+            "verified": true
+          },
+          {
+            "quote": "Sometime I also do this when I am suppose to do homework.",
+            "comment": "You relate the topic to your own experience, which is a good step toward originality.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "",
+            "issue": "Frequent reliance on generic statements like \u2018technology is very important\u2019 and \u2018in modern time.\u2019",
+            "suggestion": "Replace generic phrasing with specific observations or unique perspectives (e.g., describe a particular app your school uses).",
+            "example_rewrite": "Our school uses the \u2018Kahoot!\u2019 app, which turns quizzes into competitive games that keep students engaged.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Use of filler clich\u00e9s such as \u2018more better\u2019 and \u2018in correct way.\u2019",
+            "suggestion": "Choose precise language; avoid redundant comparatives and vague modifiers.",
+            "example_rewrite": "If we use technology correctly, it can improve education for everyone.",
+            "verified": true
+          },
+          {
+            "quote": "",
+            "issue": "Voice is inconsistent; sentences shift between formal and informal tones.",
+            "suggestion": "Decide on a tone (e.g., academic) and maintain it throughout, using consistent verb forms and vocabulary.",
+            "example_rewrite": "Technology enhances learning by providing visual resources and supporting shy students through online forums.",
+            "verified": true
+          }
+        ]
+      }
+    ],
+    "grammar_errors": [
+      {
+        "quote": "technology help students to learn more better",
+        "correction": "technology helps students learn better",
+        "error_type": "grammar",
+        "explanation": "Third\u2011person singular needs \u2018s\u2019 on the verb; comparative \u2018more better\u2019 is redundant.",
+        "verified": true
+      },
+      {
+        "quote": "Many school are using computer and tablet in classroom",
+        "correction": "Many schools are using computers and tablets in the classroom",
+        "error_type": "grammar",
+        "explanation": "Plural nouns need plural verbs and articles; \u2018computer\u2019 and \u2018tablet\u2019 require articles and plural \u2018s\u2019.",
+        "verified": true
+      },
+      {
+        "quote": "students can see how the things is working",
+        "correction": "students can see how things work",
+        "error_type": "grammar",
+        "explanation": "Plural noun \u2018things\u2019 must match plural verb \u2018are\u2019; the phrase can be simplified.",
+        "verified": true
+      },
+      {
+        "quote": "everybody was very exciting",
+        "correction": "everybody was very excited",
+        "error_type": "word_choice",
+        "explanation": "'Exciting' describes something that causes excitement; the correct adjective for feeling is 'excited'.",
+        "verified": true
+      },
+      {
+        "quote": "they dont need to go to library",
+        "correction": "they don\u2019t need to go to the library",
+        "error_type": "punctuation",
+        "explanation": "Contractions need an apostrophe; singular count nouns need an article.",
+        "verified": true
+      },
+      {
+        "quote": "technology is helping students who is shy",
+        "correction": "technology is helping students who are shy",
+        "error_type": "grammar",
+        "explanation": "Relative clause verb must agree with its antecedent \u2018students\u2019 (plural).",
+        "verified": true
+      },
+      {
+        "quote": "they can write there opinion",
+        "correction": "they can write their opinion",
+        "error_type": "spelling",
+        "explanation": "'There' is a location adverb; the possessive adjective is 'their'.",
+        "verified": true
+      },
+      {
+        "quote": "teacher was suprised",
+        "correction": "teacher was surprised",
+        "error_type": "spelling",
+        "explanation": "Double \u2018s\u2019 is needed in \u2018surprised\u2019.",
+        "verified": true
+      },
+      {
+        "quote": "However technology have also disadvantage",
+        "correction": "However, technology has also a disadvantage",
+        "error_type": "grammar",
+        "explanation": "Singular subject needs \u2018has\u2019; an indefinite article is required before \u2018disadvantage\u2019.",
+        "verified": true
+      },
+      {
+        "quote": "Sometime I also do this when I am suppose to do homework",
+        "correction": "Sometimes I also do this when I am supposed to do homework",
+        "error_type": "grammar",
+        "explanation": "'Sometime' is an adverb meaning \u2018once\u2019; the correct adverb is \u2018sometimes\u2019. Past participle \u2018supposed\u2019 is needed after \u2018am\u2019.",
+        "verified": true
+      },
+      {
+        "quote": "but schools must to control how students use it",
+        "correction": "but schools must control how students use it",
+        "error_type": "grammar",
+        "explanation": "Modal \u2018must\u2019 is followed directly by the base verb; the infinitive \u2018to\u2019 is unnecessary.",
+        "verified": true
+      },
+      {
+        "quote": "If we use technology in correct way, it can make education more better for everyone",
+        "correction": "If we use technology in the correct way, it can make education better for everyone",
+        "error_type": "grammar",
+        "explanation": "Missing article \u2018the\u2019; comparative \u2018more better\u2019 is redundant; use \u2018better\u2019 alone.",
+        "verified": true
+      }
+    ],
+    "overall_score": 2,
+    "overall_summary": "Your essay shows a clear understanding of the topic and includes personal examples, which is a good start. However, frequent grammar mistakes and weak organization make it hard for readers to follow your argument. Focus on correcting basic sentence errors, improving paragraph transitions, and adding stronger evidence and a rebuttal to strengthen your position.",
+    "top_priorities": [
+      "Fix recurring grammar errors (subject\u2011verb agreement, articles, verb forms).",
+      "Re\u2011organize paragraphs with clear topic sentences and logical order, adding transitions.",
+      "Develop a rebuttal to address the counter\u2011claim and provide more specific evidence."
+    ],
+    "top_strengths": [
+      "You state a clear position that acknowledges both benefits and problems.",
+      "Personal anecdotes (Ravi, your own experience) give the essay a voice.",
+      "You include a concluding sentence that restates the main idea."
+    ],
+    "next_step_exercise": "Write three short paragraphs (5\u20116 sentences each) on a new topic. In each paragraph, start with a clear topic sentence, include one specific example, and end with a concluding sentence. Pay special attention to subject\u2011verb agreement and correct article usage."
+  },
+  "verification": {
+    "items_checked": 41,
+    "items_unverified": 0,
+    "grounding_rate": 1.0,
+    "dropped": true
+  },
+  "model": "groq:openai/gpt-oss-120b",
+  "generated_at": "2026-10-08T09:43:10+00:00",
+  "from_cache": false
+}

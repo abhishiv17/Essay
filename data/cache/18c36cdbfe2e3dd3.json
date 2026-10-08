@@ -1,0 +1,245 @@
+{
+  "essay": "Social Media: A Double-Edged Sword\n\nIn today's fast-paced world, social media has become an integral part of our lives. It is something that everyone uses every single day. Social media has both advantages and disadvantages, and in this essay I will discuss both sides of this important issue.\n\nOn the one hand, social media has many advantages. It helps people stay connected with friends and family. It is also a great source of information and news. Many people use social media to express themselves and share their thoughts with the world. Social media also helps businesses reach more customers. All in all, there are many benefits of social media that we cannot ignore.\n\nOn the other hand, social media also has many disadvantages. It can be very addictive and people spend too much time on it. It can also cause problems like cyberbullying and the spread of fake news. Some people say that social media makes people feel lonely and depressed. Social media can also be a big waste of time that could be used for more productive things.\n\nThere are many different opinions about social media. Some people think it is good and some people think it is bad. At the end of the day, it depends on how people use it. If it is used in the right way, it can be very helpful, but if it is used in the wrong way, it can be very harmful.\n\nIn conclusion, social media is truly a double-edged sword. It has both positive and negative effects on society. It is important for everyone to use social media wisely and responsibly. Only time will tell what the future of social media holds for us.",
+  "stats": {
+    "words": 286,
+    "sentences": 23,
+    "paragraphs": 6,
+    "avg_sentence_length": 12.4,
+    "long_sentences": 0,
+    "lexical_diversity": 0.47,
+    "flesch_reading_ease": 64.7,
+    "grade_level": 7.3
+  },
+  "options": {
+    "grade_level": "High school (Grades 9-12)",
+    "essay_type": "Argumentative",
+    "assignment_prompt": ""
+  },
+  "feedback": {
+    "overall_score": 3,
+    "overall_summary": "You\u2019ve written a clear, well\u2011organized essay that covers both sides of the social\u2011media debate, and your sentences are generally easy to read. However, the central claim is vague and the supporting details are mostly generic, which limits the persuasiveness of your argument. Focusing on a sharper thesis and richer, specific evidence will raise both the argument strength and the originality of your voice.",
+    "top_strengths": [
+      "Clear paragraph structure with a recognizable introduction, body, and conclusion.",
+      "Consistent use of simple sentences makes the essay easy to follow.",
+      "You acknowledge both advantages and disadvantages, showing balanced thinking."
+    ],
+    "top_priorities": [
+      "Craft a specific, debatable thesis that states your clear position.",
+      "Add concrete, detailed evidence rather than general statements.",
+      "Introduce a counterclaim and a rebuttal to deepen the argument."
+    ],
+    "next_step_exercise": "Write a short paragraph (5\u20117 sentences) that states a clear thesis about social media (e.g., \"Social media harms teenagers' mental health more than it helps them stay connected.\") and provides one specific, real\u2011world example to support that claim.",
+    "argument_structure": [
+      {
+        "element": "lead",
+        "present": true,
+        "quote": "In today's fast-paced world, social media has become an integral part of our lives.",
+        "verified": true
+      },
+      {
+        "element": "position",
+        "present": true,
+        "quote": "Social media has both advantages and disadvantages, and in this essay I will discuss both sides of this important issue.",
+        "verified": true
+      },
+      {
+        "element": "claim",
+        "present": true,
+        "quote": "On the one hand, social media has many advantages.",
+        "verified": true
+      },
+      {
+        "element": "counterclaim",
+        "present": true,
+        "quote": "On the other hand, social media also has many disadvantages.",
+        "verified": true
+      },
+      {
+        "element": "rebuttal",
+        "present": false,
+        "quote": "",
+        "verified": true
+      },
+      {
+        "element": "evidence",
+        "present": true,
+        "quote": "It helps people stay connected with friends and family.",
+        "verified": true
+      },
+      {
+        "element": "concluding_statement",
+        "present": true,
+        "quote": "In conclusion, social media is truly a double-edged sword.",
+        "verified": true
+      }
+    ],
+    "criteria": [
+      {
+        "criterion": "grammar",
+        "score": 3,
+        "summary": "The essay is readable, but a few mechanical slips interrupt the flow.",
+        "strengths": [
+          {
+            "quote": "Social media has become an integral part of our lives.",
+            "comment": "Your sentence is correctly punctuated and capitalized, showing solid basic mechanics.",
+            "verified": true
+          },
+          {
+            "quote": "It can be very addictive and people spend too much time on it.",
+            "comment": "You use parallel structure to link two ideas, which helps readability.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "It can be very addictive and people spend too much time on it.",
+            "issue": "Run\u2011on sentence: two independent clauses are joined only with \"and\" without a comma.",
+            "suggestion": "Insert a comma before \"and\" or split into two sentences.",
+            "example_rewrite": "It can be very addictive, and people spend too much time on it.",
+            "verified": true
+          },
+          {
+            "quote": "It is something that everyone uses every single day.",
+            "issue": "Wordy phrasing; \"something\" and \"every single day\" are redundant.",
+            "suggestion": "Eliminate unnecessary words for conciseness.",
+            "example_rewrite": "Everyone uses it daily.",
+            "verified": true
+          },
+          {
+            "quote": "Social media also helps businesses reach more customers.",
+            "issue": "Missing article before \"more customers\" \u2013 should be \"more customers\" is fine, but a comma after the introductory phrase would improve clarity.",
+            "suggestion": "Add a comma after \"Social media also helps businesses\" if you keep the introductory clause, or restructure the sentence.",
+            "example_rewrite": "Social media also helps businesses reach more customers.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "coherence",
+        "score": 3,
+        "summary": "The essay follows a basic five\u2011paragraph layout, but transitions are minimal and ideas sometimes repeat.",
+        "strengths": [
+          {
+            "quote": "On the one hand, social media has many advantages.",
+            "comment": "Clear topic sentence that signals the paragraph\u2019s focus.",
+            "verified": true
+          },
+          {
+            "quote": "On the other hand, social media also has many disadvantages.",
+            "comment": "Balanced structure helps the reader anticipate the contrast.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "Some people say that social media makes people feel lonely and depressed.",
+            "issue": "The paragraph repeats the idea of negativity without linking back to the previous point.",
+            "suggestion": "Add a transition phrase such as \"Furthermore\" or \"In addition\" to connect ideas smoothly.",
+            "example_rewrite": "Furthermore, some people say that social media makes people feel lonely and depressed.",
+            "verified": true
+          },
+          {
+            "quote": "There are many different opinions about social media.",
+            "issue": "This sentence restates the obvious and creates redundancy.",
+            "suggestion": "Replace with a sentence that moves the argument forward, perhaps summarizing the two sides you just discussed.",
+            "example_rewrite": "These opposing views show that social media\u2019s impact depends heavily on how it is used.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "argument",
+        "score": 2,
+        "summary": "Your position is identifiable, but the thesis is vague and the supporting evidence remains generic, limiting persuasive power.",
+        "strengths": [
+          {
+            "quote": "Social media has both advantages and disadvantages, and in this essay I will discuss both sides of this important issue.",
+            "comment": "You state a clear position that the issue has two sides.",
+            "verified": true
+          },
+          {
+            "quote": "Social media also helps businesses reach more customers.",
+            "comment": "You provide a concrete benefit, showing an attempt at evidence.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "Social media has both advantages and disadvantages, and in this essay I will discuss both sides of this important issue.",
+            "issue": "The thesis does not take a stance; it merely acknowledges both sides.",
+            "suggestion": "Revise the thesis to make a specific claim (e.g., \"Social media does more harm than good for teenagers\").",
+            "example_rewrite": "Social media does more harm than good for teenagers because it fuels addiction, spreads misinformation, and harms mental health.",
+            "verified": true
+          },
+          {
+            "quote": "It is also a great source of information and news.",
+            "issue": "Vague claim without concrete examples or explanation of why this matters.",
+            "suggestion": "Add a specific example (e.g., \"During natural disasters, platforms like Twitter provide real\u2011time updates that traditional media can\u2019t match.\") and explain its relevance.",
+            "example_rewrite": "During natural disasters, platforms like Twitter provide real\u2011time updates, helping people stay informed when other news sources are delayed.",
+            "verified": true
+          },
+          {
+            "quote": "Social media can also be a big waste of time that could be used for more productive things.",
+            "issue": "Unsupported generalization; no evidence is offered.",
+            "suggestion": "Include a statistic or study that quantifies time spent on social media.",
+            "example_rewrite": "A 2023 Pew Research study found that Americans spend an average of 2.5 hours per day on social media, often at the expense of homework or exercise.",
+            "verified": true
+          }
+        ]
+      },
+      {
+        "criterion": "originality",
+        "score": 2,
+        "summary": "The essay relies on common, predictable statements and includes several clich\u00e9 phrases, limiting a distinctive voice.",
+        "strengths": [
+          {
+            "quote": "Only time will tell what the future of social media holds for us.",
+            "comment": "Concluding sentence shows an attempt to personalize the ending.",
+            "verified": true
+          }
+        ],
+        "improvements": [
+          {
+            "quote": "It can be very addictive and people spend too much time on it.",
+            "issue": "A generic claim that many readers have heard before.",
+            "suggestion": "Share a specific, personal observation or a recent study to make the point more original.",
+            "example_rewrite": "My classmate stayed up until 2\u202fa.m. scrolling through TikTok, which left her exhausted for her morning chemistry test.",
+            "verified": true
+          }
+        ]
+      }
+    ],
+    "grammar_errors": [
+      {
+        "quote": "It can be very addictive and people spend too much time on it.",
+        "correction": "It can be very addictive, and people spend too much time on it.",
+        "error_type": "punctuation",
+        "explanation": "Two independent clauses joined by \"and\" need a comma before the conjunction.",
+        "verified": true
+      },
+      {
+        "quote": "It is something that everyone uses every single day.",
+        "correction": "Everyone uses it daily.",
+        "error_type": "word_choice",
+        "explanation": "Redundant phrasing ('something' and 'every single day') should be replaced with a concise expression.",
+        "verified": true
+      },
+      {
+        "quote": "Social media also helps businesses reach more customers.",
+        "correction": "Social media also helps businesses reach more customers.",
+        "error_type": "sentence_structure",
+        "explanation": "The sentence is correct; no change needed, but adding a comma after the introductory phrase would improve clarity if expanded.",
+        "verified": true
+      }
+    ]
+  },
+  "verification": {
+    "items_checked": 21,
+    "items_unverified": 2,
+    "grounding_rate": 0.905,
+    "dropped": true
+  },
+  "model": "groq:openai/gpt-oss-120b",
+  "generated_at": "2026-10-08T09:45:08+00:00",
+  "from_cache": false
+}

@@ -11,7 +11,7 @@ Essay text
   |       lexical diversity, Flesch reading ease, Flesch-Kincaid grade
   |
   2. Analyze (core/prompts.py + core/llm.py)
-  |    one LLM call (Gemini Flash; Groq gpt-oss-120b as automatic backup) with: teacher persona + feedback principles, the rubric,
+  |    one LLM call (Groq gpt-oss-120b; Gemini Flash models as automatic backup) with: teacher persona + feedback principles, the rubric,
   |    student level, essay type, assignment prompt, measured stats, the essay
   |    -> structured output enforced by a JSON schema (core/schema.py), including an
   |       argument-structure checklist (7 PERSUADE elements: present/absent + quote)
@@ -42,8 +42,9 @@ Essay text
 ## Model
 
 Free-tier models only:
-- **Google Gemini Flash** (`gemini-flash-latest`) is the primary. It's the strongest free option for nuanced writing feedback and supports strict JSON-schema output.
-- **Groq** (`openai/gpt-oss-120b`) is the automatic backup when Gemini is rate-limited or unavailable. It has a separate free quota and is very fast.
+- **Groq** (`openai/gpt-oss-120b`) is the primary. It allows about 1,000 free requests a day, returns a full report in about 10 seconds, and supports strict JSON-schema output.
+- **Google Gemini** is the automatic backup. Its free tier is per model and can be as low as 20 requests/day, so the client tries several Flash models in turn (`gemini-flash-latest`, `gemini-3.5-flash`, `gemini-3-flash-preview`, then the Lite models). A model that hits its limit is skipped until it resets.
+- If a model's JSON answer comes back incomplete, the next model or provider takes over. Groq's output allowance is sized for each request, so the prompt plus the answer fits its free per-minute token limit.
 
 Both are called through their OpenAI-compatible APIs (`core/llm.py`). The client retries on rate limits and switches to plain JSON mode if a model rejects strict schemas. The pipeline then fills any fields a model leaves out, so the UI never breaks. `LLM_REASONING_EFFORT=low` keeps answers fast and within free-tier token limits. The report records which model produced it.
 

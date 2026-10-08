@@ -35,7 +35,8 @@ Teachers spend a lot of time giving detailed feedback on essays (grammar, cohere
 ### How we stand out
 1. **Pedagogical, not just corrective.** Every comment quotes the student's own words, explains *why*, and gives a concrete next step plus a model rewrite.
 2. **Grounded.** A verification step checks that every quote actually appears in the essay and drops anything made up. The UI shows a "grounding rate" for each report.
-3. **Measured.** We report real numbers: planted-error recall, agreement with human scores, and teammate-rated relevance.
+3. **Measured.** The report shows real, measured numbers (planted-error detection, argument structure vs. PERSUADE experts, score agreement with ELLIPSE raters, quote grounding). Nothing is estimated.
+4. **Built around the brief.** The flow is Landing → Submission → Analysis → Feedback report, with the four required criteria up front. The report doubles as an educator-ready artifact (print / copy / download).
 
 ---
 
@@ -44,7 +45,7 @@ Teachers spend a lot of time giving detailed feedback on essays (grammar, cohere
 | Layer | Choice | Why |
 |---|---|---|
 | Backend | **Python 3.13 + FastAPI** | Fast to write; Vercel detects it with no config |
-| AI | **Free-tier LLMs**: Google Gemini (`gemini-flash-latest`) as primary, **Groq** (`openai/gpt-oss-120b`) as automatic backup. Plain HTTPS through `httpx`, OpenAI-compatible API | No paid keys; both support structured JSON output; separate quotas, so one can cover for the other |
+| AI | **Free-tier LLMs**: **Groq** (`openai/gpt-oss-120b`) as primary, Google **Gemini** as automatic backup, trying several Flash models in turn because each has its own daily quota. Plain HTTPS through `httpx`, OpenAI-compatible API | No paid keys; both support structured JSON output; separate quotas, so one can cover for the other |
 | Frontend | **Plain HTML + CSS + JS** (no framework, no build step) | Nothing to configure; anyone can edit it |
 | Hosting | **Vercel**: API runs as a Python Vercel Function, the frontend is served from the CDN | One project, one URL, auto-deploys on push |
 
@@ -63,8 +64,8 @@ paste essay + pick level/type
                                                         readability grade, lexical diversity)
                                      2. prompts.py      build prompt: teacher persona + rubric +
                                                         student level + stats + essay
-                                     3. llm.py          ONE model call (Gemini; Groq if Gemini is
-                                                        rate-limited); output forced to match schema.py
+                                     3. llm.py          ONE model call (Groq; Gemini models if Groq is
+                                                        busy); output forced to match schema.py
                                      4. verify.py       find every quote in the essay; drop the
                                                         ones that aren't there
                                      5. pipeline.py     tidy scores (clamp 1-5), cache result
@@ -106,12 +107,13 @@ core/
   pipeline.py           generate_feedback(text, FeedbackOptions) -> result dict. Caching lives here.
   report.py             to_markdown(result).
 frontend/
-  index.html            Nav, welcome section (3 steps), input card (left), results card (right), rubric dialog,
-                        guided-tour layers. Style follows feather.so (Uncut Sans, slate palette).
-  styles.css            Design tokens in :root, dark mode, responsive breakpoints at 960px/560px.
-  app.js                Calls the API, renders results, highlights quotes (JS port of find_span), guided tour,
-                        try-it-yourself mode, read aloud, error patterns, readability gauge, recent reports.
-                        URL options: ?notour, ?sample=<file name>. Feature list: docs/features.md section 7.
+  index.html            Views: landing, submission, analysis, error, report (report column + annotated essay
+                        panel) and drawers: samples (+ recent), criteria, evaluation, how it works. GSAP + Flip.
+  styles.css            Warm-paper editorial tokens in :root (one theme), category colours, print stylesheet,
+                        breakpoints 1100/1024/768/420.
+  app.js                Flow, submission, analysis pipeline steps, the feedback report (overall, four expandable
+                        criteria, strengths, improvements, practice, measured evaluation), essay<->feedback linking,
+                        revision compare, print/copy/download. URL: ?sample=<name>. See docs/features.md section 7.
 data/
   sample_essays/*.txt   4 demo essays. The filename prefix sets the order; the rest becomes the chip label.
   mock_feedback.json    Canned model output matching the ESL sample (used when MOCK_LLM=1).
@@ -193,7 +195,9 @@ Response (abridged):
 
 ### Other routes
 - `GET /api/health` returns `{ ok, mock, model, access_code_required }`
-- `GET /api/rubric` returns `{ min, max, criteria }`
+- `GET /api/rubric` returns `{ min, max, criteria, argument_elements }`
+- `GET /api/evaluation` returns `{ generated_at, metrics: [{ id, label, value (0-1), detail, n, model, run_at }] }` from `data/evaluation_summary.json`. Empty list if nothing has been measured; never estimated.
+- `POST /api/practice` takes `{ task, original, attempt, grade_level }` and returns `{ verdict: improved|getting_there|not_yet, feedback, next_tip, model }`. Short feedback on one practice rewrite; not cached. Uses `PRACTICE_SCHEMA` (`core/schema.py`) and `check_practice()` (`core/pipeline.py`).
 - `GET /api/samples` returns `[{ id, title, text }]`
 
 **If you change the response shape**, update `core/schema.py`, `core/report.py`, `frontend/app.js` and `data/mock_feedback.json` together, and bump `PIPELINE_VERSION` in `core/pipeline.py` so old cached results are ignored.
@@ -206,8 +210,8 @@ Response (abridged):
 
 | Variable | Get it |
 |---|---|
-| `GEMINI_API_KEY` | https://aistudio.google.com/apikey (main model) |
-| `GROQ_API_KEY` | https://console.groq.com/keys (backup, used automatically if Gemini is busy) |
+| `GEMINI_API_KEY` | https://aistudio.google.com/apikey (backup, used automatically if Groq is busy) |
+| `GROQ_API_KEY` | https://console.groq.com/keys (main model) |
 
 Everything else has sensible defaults in `core/config.py`. Two optional extras:
 - `MOCK_LLM=1`: canned feedback with no API calls, for UI work.
@@ -243,10 +247,9 @@ Run commands from the **project root**, because the static mount and the imports
 - `app.js` passes a syntax check.
 
 **Not yet verified:**
-- A real Gemini/Groq call: the code is tested against simulated responses (rate-limit fallback, schema rejection, partial output), but no free keys have been added yet. First thing to do: add the keys, then run `python -m core.llm test`.
-- A real Vercel deployment.
-- Prompt quality on all 4 samples.
-- Eval numbers (they need real API runs).
+- Live Groq reviews work (about 10 s each). The 4 sample reports were generated live and saved in `data/cache/` for an instant demo. The Gemini fallback, model rotation and cooldowns are tested with simulated responses (Gemini allows as few as 20 requests a day per model, which is why Groq is primary).
+- First real evaluation run done (small samples): see `data/evaluation_summary.json` and `docs/AI_APPROACH.md`.
+- A real Vercel deployment of this version.
 - The 8 generated synthetic essays (`generate_synthetic` needs the API).
 - Teammates need their own copy of the datasets (`data/raw/` is git-ignored). See `data/DATASETS.md`.
 

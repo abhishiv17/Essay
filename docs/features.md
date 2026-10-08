@@ -188,25 +188,31 @@ Fill this in at each checkpoint so everyone knows what's in and out.
 | #3 "Fix it yourself" | **done** | B | before kickoff | "Try it yourself" switch; per-answer Show buttons |
 | #4 Read aloud | **done** | B | before kickoff | Toolbar Listen/Stop + speaker icon on each comment |
 | #18 Local progress history | **done** (lite) | B | before kickoff | "Recent reports" menu, last 6 in this browser; no score trend yet |
-| O1-O6 Onboarding + UX | **done** | B | before kickoff | See section 7 |
+| O1-O6 Onboarding + UX | **replaced** | B | before kickoff | Superseded by the redesign (section 7) |
+| R1-R16 Product redesign | **replaced** | B | before kickoff | Superseded by the TCS realignment |
+| TCS realignment | **done** | B | before kickoff | See section 7 |
 | | | | | |
 
 ---
 
-## 7. Onboarding and UX (done)
+## 7. TCS realignment (done)
 
-The UI follows feather.so's visual style: Uncut Sans (OFL, via Fontsource), slate neutrals, white rounded cards, a dark primary button and a periwinkle accent. All of it lives in `frontend/`, with no backend or schema changes.
+The product was realigned with the problem statement: **an automated essay feedback system**, not a writing-coach app. The flow is **Landing → Essay submission (+ optional context) → Analysis pipeline → Feedback report**. The report is the core artifact. The visual system is editorial (warm paper, Newsreader + Geist, restrained category colours); motion uses GSAP 3.12.5 + Flip and respects reduced motion.
 
-| # | Feature | Where |
-|---|---|---|
-| O1 | **Welcome section**: a headline, "Try a sample essay" / "Paste your own" buttons, and a 3-step "How it works". Hidden once a report is showing; the nav link brings it back. | `index.html` hero |
-| O2 | **Guided tour**: starts automatically on the first visit (4 steps over the input), then 3 steps the first time results appear. Replay it with "Take the tour". Skip, Back, Next, and the arrow and Escape keys all work. | `app.js` TOURS |
-| O3 | **Friendly input**: a word-count bar that turns green at 50 words; the button stays disabled until the essay is valid; the draft autosaves in the browser; Clear; Ctrl+Enter; a hint on each sample chip | `app.js` input section |
-| O4 | **Plain-language errors**: rate limit → "The free AI is busy right now"; missing key → "The AI isn't set up yet"; 401 → asks for the access code. Technical details stay behind a toggle. | `friendlyError()` |
-| O5 | **Explanations in place**: an (i) tooltip on every score says what that score means; a Rubric dialog in the nav; empty and loading states say what's coming and how long it takes | `app.js`, `index.html` |
-| O6 | **Sharing**: Copy and Download (Markdown), plus "Start a new essay" | results toolbar |
+| TCS requirement | Where it is in the product |
+|---|---|
+| Accepts essay text | Submission screen: large essay box (required), with type, level and assignment prompt as optional context |
+| Grammar, coherence, argument strength, originality | **The four criteria** section of every report, using exactly those names; each scored 1–5 and expandable for explanation, evidence, weaknesses, recommendations and strengths |
+| Highlights strengths | **What you're doing well**: top 3, each with the essay quote as evidence and why it works |
+| Identifies areas for improvement | **Areas for improvement**: prioritized, each as evidence → why it matters → what to do next → suggested revision |
+| Constructive, pedagogical | Grammar shows the most common pattern, each correction with its rule, and a "Try it yourself" mode. The argument map explains each part. The practice task is checked by `POST /api/practice` |
+| Personalized | "Calibrated for" chips (type, level, prompt). The prompt requires essay-specific comments and checks alignment with the assignment prompt. Narrative essays are judged on purpose, never penalized for lacking a thesis |
+| Grounded in the essay | Every quote is verified on the server (unmatched ones removed). In the report, clicking a quote scrolls the essay panel to the highlighted sentence, and clicking a highlight opens the matching comment |
+| 80%+ accuracy and relevance | **How accurate is this feedback?** section and the Evaluation drawer show only measured results from `data/evaluation_summary.json` (written by `eval/run_eval.py`) |
+| Simple UI for submission and viewing | Three screens, no login. Print / Copy / Download turn the report into a shareable educator artifact |
+| Diverse essays | 4 samples (strong, ESL, generic/cliché, narrative) with saved real reports that differ meaningfully |
+| Reduce educator workload | The report is structured as first-pass feedback a teacher can review, print and share; this is stated on the landing page and in the report footer |
 
-**Demo recording tips:**
-- `/?notour` skips the tour.
-- `/?sample=2_esl_grammar_errors` loads a sample and runs it immediately. It works with any file name in `data/sample_essays/`, without the `.txt`.
-- Run each demo essay once beforehand so the result comes from the cache and appears instantly.
+**Removed or de-emphasized** (still in git history): the goal onboarding, the 7-tab report, the read-aloud button, recent reports on the landing page (now a small list inside the Samples drawer), and coach-style wording.
+
+**Demo:** see [docs/DEMO.md](DEMO.md). `/?sample=<file name>` opens a sample report directly.
